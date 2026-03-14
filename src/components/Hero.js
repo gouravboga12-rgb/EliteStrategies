@@ -75,27 +75,43 @@ export function renderHero() {
     </div>
   `;
 
-  // Typing animation for CTA buttons
+  // Typing animation for CTA buttons with cursor and loop
   const typeEffect = (elementId, text, speed = 100) => {
     const element = document.getElementById(elementId);
     if (!element) return;
+    
     let i = 0;
-    element.innerHTML = '';
-    const typing = setInterval(() => {
-      if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-        i++;
-      } else {
-        clearInterval(typing);
+    let isDeleting = false;
+    
+    const typing = () => {
+      const currentText = isDeleting 
+        ? text.substring(0, i - 1) 
+        : text.substring(0, i + 1);
+      
+      element.innerHTML = `${currentText}<span class="animate-pulse border-r-2 border-primary ml-1"></span>`;
+      
+      if (!isDeleting && i === text.length) {
+        // Pause at the end
+        setTimeout(() => isDeleting = true, 2000);
+      } else if (isDeleting && i === 0) {
+        isDeleting = false;
+        // Pause at the beginning
       }
-    }, speed);
+      
+      i = isDeleting ? i - 1 : i + 1;
+      
+      const nextSpeed = isDeleting ? speed / 2 : speed;
+      setTimeout(typing, nextSpeed);
+    };
+    
+    typing();
   };
 
-  // Initial call with a small delay for better visual effect
+  // Initial call with a small delay
   setTimeout(() => {
-    typeEffect('type-explore', 'Explore Services', 100);
+    typeEffect('type-explore', 'Explore Services', 150);
     setTimeout(() => {
-      typeEffect('type-contact', 'Contact Expert', 100);
-    }, 1500); // Start second button after first one is mostly done
+      typeEffect('type-contact', 'Contact Expert', 150);
+    }, 1000);
   }, 500);
 }
