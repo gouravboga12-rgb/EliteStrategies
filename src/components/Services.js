@@ -3,7 +3,7 @@ import { createIcons, ChevronRight, ChevronDown, ChevronUp, Info, Home, Briefcas
 export function renderServices(isPreview = false) {
   const container = document.querySelector('#services');
   if (!container) return;
-  container.className = 'py-24 bg-gray-50';
+  container.className = 'py-24 bg-ash-light';
   
   let services = [
     { 
