@@ -6,7 +6,7 @@ export function renderAbout(isPreview = false) {
   container.innerHTML = `
     <div class="container mx-auto px-6 md:px-12">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="relative" data-aos="fade-right">
+        <div class="relative order-2 lg:order-1" data-aos="fade-right">
           <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
              <div class="aspect-[4/3] bg-primary flex items-center justify-center text-white relative">
                 
@@ -23,7 +23,7 @@ export function renderAbout(isPreview = false) {
           </div>
         </div>
 
-        <div data-aos="fade-left">
+        <div class="order-1 lg:order-2" data-aos="fade-left">
           <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">About Elite Loan Strategies</h2>
           <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-sans">Empowering Your Financial Future with Expert Guidance</h3>
           <p class="text-gray-600 mb-8 leading-relaxed">
