@@ -30,7 +30,7 @@ function init() {
 
   renderNavbar();
   renderHero();
-  renderTestimonials();
+  renderTestimonials(true);
   renderAbout(true); // Preview mode
   renderServices(true); // Preview mode
   renderWhyChooseUs();
