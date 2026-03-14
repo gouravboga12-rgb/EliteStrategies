@@ -11,17 +11,16 @@ export function renderNavbar() {
   };
 
   container.innerHTML = `
-  container.innerHTML = `
     <nav id="navbar-inner" class="transition-all duration-300 py-5 px-6 md:px-12 flex items-center justify-between border-b border-gray-100 bg-white">
-      <a href="/" class="flex items-center space-x-4 group">
-        <div id="logo-box" class="w-12 h-12 rounded-full overflow-hidden bg-white transition-all duration-300 transform group-hover:scale-105">
+      <div class="flex items-center space-x-3">
+        <div id="logo-box" class="w-12 h-12 rounded-lg overflow-hidden shadow-sm border border-gray-100 bg-white p-1 transition-all duration-300">
           <img src="/logo.png" alt="Elite Loan Logo" class="w-full h-full object-contain">
         </div>
         <div>
           <h1 id="brand-name" class="text-xl md:text-2xl font-black text-ash leading-none tracking-tighter transition-colors duration-300">ELITE LOAN</h1>
           <p class="text-[10px] md:text-xs text-primary font-bold tracking-[0.2em] uppercase">Strategies</p>
         </div>
-      </a>
+      </div>
 
       <!-- Desktop Navigation -->
       <div id="nav-links" class="hidden md:flex items-center space-x-10">
@@ -61,7 +60,7 @@ export function renderNavbar() {
     if (isScrolled) {
       innerNav.className = 'transition-all duration-300 py-3 px-6 md:px-12 flex items-center justify-between bg-black shadow-2xl';
       brandName.className = 'text-xl md:text-2xl font-black text-white leading-none tracking-tighter transition-colors duration-300';
-      logoBox.className = 'w-10 h-10 rounded-full overflow-hidden bg-white transition-all duration-300';
+      logoBox.className = 'w-10 h-10 rounded-lg overflow-hidden border border-white/20 bg-white p-1 transition-all duration-300';
       navLinks.forEach(link => {
         if (!link.classList.contains('text-primary')) {
           link.className = 'nav-link text-gray-300 hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm';
@@ -71,7 +70,7 @@ export function renderNavbar() {
     } else {
       innerNav.className = 'transition-all duration-300 py-5 px-6 md:px-12 flex items-center justify-between border-b border-gray-100 bg-white';
       brandName.className = 'text-xl md:text-2xl font-black text-ash leading-none tracking-tighter transition-colors duration-300';
-      logoBox.className = 'w-12 h-12 rounded-full overflow-hidden bg-white transition-all duration-300';
+      logoBox.className = 'w-12 h-12 rounded-lg overflow-hidden shadow-sm border border-gray-100 bg-white p-1 transition-all duration-300';
       navLinks.forEach(link => {
         if (!link.classList.contains('text-primary')) {
           link.className = 'nav-link text-ash hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm';

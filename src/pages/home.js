@@ -1,7 +1,8 @@
 import '../style.css';
-import { createIcons, Menu, X, Phone, Mail, MapPin, CheckCircle, ArrowRight, Home, Info, Briefcase, MessageSquare, ChevronRight, ChevronDown, ChevronUp } from 'lucide';
+import { createIcons, Menu, X, Phone, Mail, MapPin, CheckCircle, ArrowRight, Home, Info, Briefcase, MessageSquare, ChevronRight, ChevronDown, ChevronUp, Star } from 'lucide';
 import { renderNavbar } from '../components/Navbar.js';
 import { renderHero } from '../components/Hero.js';
+import { renderTestimonials } from '../components/Testimonials.js';
 import { renderAbout } from '../components/About.js';
 import { renderServices } from '../components/Services.js';
 import { renderWhyChooseUs } from '../components/WhyChooseUs.js';
@@ -17,6 +18,7 @@ function init() {
     <nav id="navbar-container"></nav>
     <main>
       <section id="home"></section>
+      <section id="testimonials"></section>
       <section id="about"></section>
       <section id="services"></section>
       <section id="why-choose-us"></section>
@@ -28,6 +30,7 @@ function init() {
 
   renderNavbar();
   renderHero();
+  renderTestimonials();
   renderAbout(true); // Preview mode
   renderServices(true); // Preview mode
   renderWhyChooseUs();
@@ -36,7 +39,7 @@ function init() {
   renderWhatsAppButton();
 
   createIcons({
-    icons: { Menu, X, Phone, Mail, MapPin, CheckCircle, ArrowRight, Home, Info, Briefcase, MessageSquare, ChevronRight, ChevronDown, ChevronUp }
+    icons: { Menu, X, Phone, Mail, MapPin, CheckCircle, ArrowRight, Home, Info, Briefcase, MessageSquare, ChevronRight, ChevronDown, ChevronUp, Star }
   });
 
   // Initialize AOS after content is in DOM
