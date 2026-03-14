@@ -13,10 +13,10 @@
 
 :root {
   --primary-color: #D4AF37;
-  --secondary-color: #F8F9FA;
+  --secondary-color: #FFFFFF;
   --accent-color: #C5A022;
-  --text-color: #374151;
-  --ash-bg: #F2F4F7;
+  --text-color: #1A1A1A;
+  --ash-bg: #F8F9FA;
 }
 
 body {
@@ -27,9 +27,8 @@ body {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .transition-smooth {

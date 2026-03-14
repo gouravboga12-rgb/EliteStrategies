@@ -11,23 +11,23 @@ export function renderNavbar() {
   };
 
   container.innerHTML = `
-    <div class="glass shadow-md py-4 px-6 md:px-12 flex items-center justify-between">
+    <div class="bg-white shadow-sm py-5 px-6 md:px-12 flex items-center justify-between border-b border-gray-100">
       <div class="flex items-center space-x-2">
         <div class="bg-primary p-2 rounded-lg">
           <i data-lucide="briefcase" class="w-6 h-6 text-white"></i>
         </div>
         <div>
-          <h1 class="text-xl md:text-2xl font-bold text-ash leading-none">ELITE LOAN</h1>
-          <p class="text-[10px] md:text-xs text-primary font-medium tracking-widest uppercase">Strategies</p>
+          <h1 class="text-xl md:text-2xl font-black text-ash leading-none tracking-tighter">ELITE LOAN</h1>
+          <p class="text-[10px] md:text-xs text-primary font-bold tracking-[0.2em] uppercase">Strategies</p>
         </div>
       </div>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="/" class="${isActive('/') ? 'text-primary font-bold' : 'text-gray-700'} hover:text-primary transition-smooth font-medium">Home</a>
-        <a href="/about.html" class="${isActive('/about.html') ? 'text-primary font-bold' : 'text-gray-700'} hover:text-primary transition-smooth font-medium">About</a>
-        <a href="/services.html" class="${isActive('/services.html') ? 'text-primary font-bold' : 'text-gray-700'} hover:text-primary transition-smooth font-medium">Services</a>
-        <a href="/contact.html" class="${isActive('/contact.html') ? 'text-primary font-bold' : 'text-gray-700'} hover:text-primary transition-smooth font-medium">Contact</a>
+      <div class="hidden md:flex items-center space-x-10">
+        <a href="/" class="${isActive('/') ? 'text-primary' : 'text-ash'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">Home</a>
+        <a href="/about.html" class="${isActive('/about.html') ? 'text-primary' : 'text-ash'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">About</a>
+        <a href="/services.html" class="${isActive('/services.html') ? 'text-primary' : 'text-ash'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">Services</a>
+        <a href="/contact.html" class="${isActive('/contact.html') ? 'text-primary' : 'text-ash'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">Contact</a>
       </div>
 
       <!-- Mobile Menu Button -->
