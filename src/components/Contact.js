@@ -6,9 +6,50 @@ export function renderContact(isPreview = false) {
   const urlParams = new URLSearchParams(window.location.search);
   const serviceId = urlParams.get('service');
 
+  // Time slots for booking
+  const TIMESLOTS = [
+    '10:00 AM - 10:30 AM', '10:30 AM - 11:00 AM',
+    '11:00 AM - 11:30 AM', '11:30 AM - 12:00 PM',
+    '12:00 PM - 12:30 PM', '12:30 PM - 01:00 PM',
+    '01:00 PM - 01:30 PM', '01:30 PM - 02:00 PM',
+    '02:00 PM - 02:30 PM', '02:30 PM - 03:00 PM',
+    '03:00 PM - 03:30 PM', '03:30 PM - 04:00 PM',
+    '04:00 PM - 04:30 PM', '04:30 PM - 05:00 PM',
+    '05:00 PM - 05:30 PM', '05:30 PM - 06:00 PM',
+    '06:00 PM - 06:30 PM', '06:30 PM - 07:00 PM'
+  ];
+
+  // Helper to get booking counts for a specific date
+  const getSlotAvailability = (date) => {
+    const inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
+    const counts = {};
+    inquiries.forEach(inq => {
+      if (inq.bookingDate === date && inq.bookingSlot) {
+        counts[inq.bookingSlot] = (counts[inq.bookingSlot] || 0) + 1;
+      }
+    });
+    return counts;
+  };
+
   // Determine which form to show
   let formContent = '';
   let formTitle = 'Get in Touch With Our Experts';
+
+  const bookingFields = `
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-100">
+      <div>
+        <label class="block text-sm font-bold text-gray-700 mb-2">Preferred Date</label>
+        <input type="date" name="bookingDate" min="${new Date().toISOString().split('T')[0]}" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" required>
+      </div>
+      <div>
+        <label class="block text-sm font-bold text-gray-700 mb-2">Preferred Slot</label>
+        <select name="bookingSlot" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" required disabled>
+          <option value="" disabled selected>Select Date First</option>
+        </select>
+      </div>
+    </div>
+  `;
+
 
   if (serviceId === 'cibil') {
     formTitle = 'Inquire for CIBIL Report';
@@ -38,6 +79,7 @@ export function renderContact(isPreview = false) {
           <label class="block text-sm font-bold text-gray-700 mb-2">Gmail Address</label>
           <input type="email" name="email" placeholder="john@gmail.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" required>
         </div>
+        ${bookingFields}
       </div>
     `;
   } else if (serviceId) {
@@ -92,6 +134,7 @@ export function renderContact(isPreview = false) {
             <label class="block text-sm font-bold text-gray-700 mb-2">Annual Income (₹)</label>
             <input type="number" name="income" placeholder="600000" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" required>
           </div>
+          ${bookingFields}
         </div>
       `;
     // Online Account Opening form
@@ -134,6 +177,7 @@ export function renderContact(isPreview = false) {
               </select>
             </div>
           </div>
+          ${bookingFields}
         </div>
       `;
     // Generic Loan form (Personal, Business, Mortgage, Home Loan, Debt Consolidation)
@@ -329,8 +373,6 @@ export function renderContact(isPreview = false) {
         const saveInquiry = (paymentId = "DEMO") => {
           const inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
           const formData = new FormData(form);
-          const formDetails = Object.fromEntries(formData.entries());
-          
           const newInquiry = {
             id: Date.now(),
             name: formData.get('name') || formData.get('fullName') || 'Anonymous',
@@ -340,9 +382,9 @@ export function renderContact(isPreview = false) {
             amount: amountInRupees,
             paymentId,
             date: new Date().toISOString(),
-            status: 'Paid',
-            details: formDetails, // Capture ALL fields
-            slot: 'Not Assigned' // Default slot
+            bookingDate: formData.get('bookingDate'),
+            bookingSlot: formData.get('bookingSlot'),
+            status: 'Paid'
           };
           inquiries.unshift(newInquiry);
           localStorage.setItem('inquiries', JSON.stringify(inquiries));
@@ -360,6 +402,10 @@ export function renderContact(isPreview = false) {
               <div class="space-y-3">
                 <h3 class="text-3xl font-bold text-gray-900">Payment Successful</h3>
                 <p class="text-gray-500 font-medium">Thank you! Your inquiry for <strong>${serviceName}</strong> has been received successfully.</p>
+                <div class="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-100 flex flex-col items-center">
+                  <span class="text-xs text-blue-600 font-bold uppercase tracking-wider mb-1">Booked Consultation Slot</span>
+                  <p class="text-gray-900 font-bold">${formData.get('bookingDate')} | ${formData.get('bookingSlot')}</p>
+                </div>
               </div>
               <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-left space-y-2">
                 <div class="flex justify-between text-sm">
@@ -438,5 +484,30 @@ export function renderContact(isPreview = false) {
         form.reset();
       }
     });
+
+    // Add interactivity for Slot Booking
+    const dateInput = form.querySelector('input[name="bookingDate"]');
+    const slotSelect = form.querySelector('select[name="bookingSlot"]');
+
+    if (dateInput && slotSelect) {
+      dateInput.addEventListener('change', (e) => {
+        const selectedDate = e.target.value;
+        const availability = getSlotAvailability(selectedDate);
+        
+        slotSelect.disabled = false;
+        slotSelect.innerHTML = '<option value="" disabled selected>Select a Time Slot</option>';
+        
+        TIMESLOTS.forEach(slot => {
+          const bookedCount = availability[slot] || 0;
+          const isFull = bookedCount >= 2;
+          
+          const option = document.createElement('option');
+          option.value = slot;
+          option.textContent = `${slot} ${isFull ? '(Already Booked)' : `(${2 - bookedCount} Slots Left)`}`;
+          option.disabled = isFull;
+          slotSelect.appendChild(option);
+        });
+      });
+    }
   }
 }

@@ -28,9 +28,6 @@ export function renderNavbar() {
         <a href="/about.html" class="${isActive('/about.html') ? 'text-primary font-bold' : 'text-gray-700'} hover:text-primary transition-smooth font-medium">About</a>
         <a href="/services.html" class="${isActive('/services.html') ? 'text-primary font-bold' : 'text-gray-700'} hover:text-primary transition-smooth font-medium">Services</a>
         <a href="/contact.html" class="${isActive('/contact.html') ? 'text-primary font-bold' : 'text-gray-700'} hover:text-primary transition-smooth font-medium">Contact</a>
-        <a href="https://wa.me/91XXXXXXXXXX?text=Hello,%20I%20am%20interested%20in%20your%20financial%20services." target="_blank" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-semibold transition-smooth shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-          Get Started
-        </a>
       </div>
 
       <!-- Mobile Menu Button -->
