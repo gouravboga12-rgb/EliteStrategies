@@ -35,10 +35,11 @@ export function renderFooter() {
       <div>
         <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Our Services</h4>
         <ul class="space-y-4 text-sm">
-          <li><a href="/services.html" class="hover:text-primary transition-colors">Personal Loans</a></li>
-          <li><a href="/services.html" class="hover:text-primary transition-colors">Business Loans</a></li>
           <li><a href="/services.html" class="hover:text-primary transition-colors">CIBIL Report</a></li>
-          <li><a href="/services.html" class="hover:text-primary transition-colors">Insurance</a></li>
+          <li><a href="/services.html" class="hover:text-primary transition-colors">Personal Loan</a></li>
+          <li><a href="/services.html" class="hover:text-primary transition-colors">Debt Consolidation</a></li>
+          <li><a href="/services.html" class="hover:text-primary transition-colors">Mortgage Loan</a></li>
+          <li><a href="/services.html" class="hover:text-primary transition-colors">Business Loan</a></li>
         </ul>
       </div>
 
