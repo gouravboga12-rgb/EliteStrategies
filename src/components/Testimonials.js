@@ -84,38 +84,49 @@ export function renderTestimonials(isPreview = false) {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-        ${displayReviews.map((review, index) => `
-          <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col" data-aos="fade-up" data-aos-delay="${index * 100}">
-            <div class="flex items-center space-x-4 mb-6">
-              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xl uppercase">
-                ${review.name.charAt(0)}
-              </div>
-              <div>
-                <h4 class="font-bold text-ash leading-none">${review.name}</h4>
-                <p class="text-xs text-gray-400 mt-1">${review.stats}</p>
-              </div>
-              <div class="ml-auto text-xs text-gray-400">
-                ${review.time}
-              </div>
-            </div>
-            
-            <div class="flex items-center space-x-1 mb-4 text-primary">
-              ${Array(5).fill('<i data-lucide="star" class="w-4 h-4 fill-current"></i>').join('')}
-              <span class="ml-2 text-sm font-bold text-ash">${review.rating.toFixed(1)}</span>
-            </div>
+      <div class="relative h-[600px] rounded-3xl overflow-hidden shadow-inner bg-white/50 border border-gray-100 mb-12 flex" id="testimonial-scroll-container">
+        <!-- Top Fade -->
+        <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-gray-50 to-transparent z-10 pointer-events-none"></div>
+        
+        <!-- Scroll Track -->
+        <div class="w-full h-full overflow-y-auto no-scrollbar cursor-grab active:cursor-grabbing pb-8 pt-8 px-4 md:px-8 relative" id="testimonial-scroll-track" style="scroll-behavior: auto;">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="testimonial-grid">
+            ${[...displayReviews, ...displayReviews].map((review, index) => `
+              <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 transition-all duration-300 flex flex-col pointer-events-none select-none h-fit">
+                <div class="flex items-center space-x-4 mb-6">
+                  <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xl uppercase">
+                    ${review.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-ash leading-none">${review.name}</h4>
+                    <p class="text-xs text-gray-400 mt-1">${review.stats}</p>
+                  </div>
+                  <div class="ml-auto text-xs text-gray-400">
+                    ${review.time}
+                  </div>
+                </div>
+                
+                <div class="flex items-center space-x-1 mb-4 text-primary">
+                  ${Array(5).fill('<i data-lucide="star" class="w-4 h-4 fill-current"></i>').join('')}
+                  <span class="ml-2 text-sm font-bold text-ash">${review.rating.toFixed(1)}</span>
+                </div>
 
-            <h5 class="font-bold text-ash mb-3">${review.title}</h5>
-            <p class="text-sm text-gray-600 leading-relaxed mb-6 italic">
-              "${review.comment}"
-            </p>
-            
-            <div class="mt-auto flex items-center text-primary text-xs font-bold uppercase tracking-widest">
-              <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i>
-              Verified Client
-            </div>
+                <h5 class="font-bold text-ash mb-3">${review.title}</h5>
+                <p class="text-sm text-gray-600 leading-relaxed mb-6 italic">
+                  "${review.comment}"
+                </p>
+                
+                <div class="mt-auto flex items-center text-primary text-xs font-bold uppercase tracking-widest">
+                  <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i>
+                  Verified Client
+                </div>
+              </div>
+            `).join('')}
           </div>
-        `).join('')}
+        </div>
+
+        <!-- Bottom Fade -->
+        <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-gray-50 to-transparent z-10 pointer-events-none"></div>
       </div>
 
       ${isPreview ? `
@@ -135,6 +146,87 @@ export function renderTestimonials(isPreview = false) {
       `}
     </div>
   `;
+
+  // Testimonial Scroll Logic
+  const track = document.querySelector('#testimonial-scroll-track');
+  const innerGrid = document.querySelector('#testimonial-grid');
+  
+  if (track && innerGrid) {
+    let isDown = false;
+    let startY;
+    let scrollTop;
+    let autoScrollInterval;
+    let isHovering = false;
+
+    // Auto-scroll logic
+    const startAutoScroll = () => {
+      autoScrollInterval = setInterval(() => {
+        if (!isHovering && !isDown) {
+           track.scrollTop += 1; // Scroll down 1px
+           // Infinite scroll loop
+           // Determine the height of exactly one copied set.
+           // Since we duplicated content exactly, half the scrollHeight is the boundary.
+           // The gap-8 (32px) and paddings can sometimes throw off perfect halving if margin collapse happens,
+           // but given grid layout, scrollHeight / 2 is generally precise enough to visually loop.
+           if (track.scrollTop >= (innerGrid.scrollHeight / 2)) {
+             track.scrollTop = 0;
+           }
+        }
+      }, 30); // Speed
+    };
+
+    const stopAutoScroll = () => {
+      clearInterval(autoScrollInterval);
+    };
+
+    // Initialize auto scroll
+    startAutoScroll();
+
+    // Mouse events for drag-to-scroll
+    track.addEventListener('mousedown', (e) => {
+      isDown = true;
+      isHovering = true;
+      track.classList.add('cursor-grabbing');
+      track.classList.remove('cursor-grab');
+      startY = e.pageY - track.offsetTop;
+      scrollTop = track.scrollTop;
+    });
+
+    track.addEventListener('mouseleave', () => {
+      isDown = false;
+      isHovering = false;
+      track.classList.remove('cursor-grabbing');
+      track.classList.add('cursor-grab');
+    });
+
+    track.addEventListener('mouseenter', () => {
+      isHovering = true;
+    });
+
+    track.addEventListener('mouseup', () => {
+      isDown = false;
+      track.classList.remove('cursor-grabbing');
+      track.classList.add('cursor-grab');
+    });
+
+    track.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const y = e.pageY - track.offsetTop;
+      const walk = (y - startY) * 2; // Scroll-fast
+      track.scrollTop = scrollTop - walk;
+    });
+
+    // Touch events - native touch scroll handles movement smoothly, just pause auto loop
+    track.addEventListener('touchstart', () => {
+      isHovering = true;
+      isDown = false; // Let native scrolling do its job without interference
+    }, {passive: true});
+
+    track.addEventListener('touchend', () => {
+      isHovering = false;
+    });
+  }
 
   // Attach event listeners
   if (isPreview) {
