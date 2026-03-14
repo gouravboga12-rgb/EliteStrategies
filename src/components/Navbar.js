@@ -12,9 +12,9 @@ export function renderNavbar() {
 
   container.innerHTML = `
     <div class="bg-white shadow-sm py-5 px-6 md:px-12 flex items-center justify-between border-b border-gray-100">
-      <div class="flex items-center space-x-2">
-        <div class="bg-primary p-2 rounded-lg">
-          <i data-lucide="briefcase" class="w-6 h-6 text-white"></i>
+      <div class="flex items-center space-x-3">
+        <div class="w-12 h-12 rounded-lg overflow-hidden shadow-sm border border-gray-100 bg-white p-1">
+          <img src="/logo.jpeg" alt="Elite Loan Logo" class="w-full h-full object-contain">
         </div>
         <div>
           <h1 class="text-xl md:text-2xl font-black text-ash leading-none tracking-tighter">ELITE LOAN</h1>

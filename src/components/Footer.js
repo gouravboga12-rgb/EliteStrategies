@@ -6,9 +6,9 @@ export function renderFooter() {
     <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       <!-- Brand -->
       <div class="flex flex-col space-y-6">
-        <div class="flex items-center space-x-2">
-          <div class="bg-primary p-2 rounded-lg">
-            <i data-lucide="briefcase" class="w-6 h-6 text-white"></i>
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 rounded-lg overflow-hidden bg-white p-1">
+            <img src="/logo.jpeg" alt="Elite Loan Logo" class="w-full h-full object-contain">
           </div>
           <h1 class="text-2xl font-black text-white tracking-tighter">ELITE LOAN</h1>
         </div>
