@@ -31,16 +31,16 @@ export function renderServices(isPreview = false) {
       icon: 'home' 
     },
     { 
-      id: 'business',
-      name: 'Business Loan', 
+      id: 'debt',
+      name: 'Debt Consolidation', 
       points: [
-        'Strategic funding for SME growth',
-        'Working capital & expansion funds',
-        'Secured & Unsecured options',
-        'Attractive interest rates',
-        'Seize new market opportunities'
+        'Combine high-interest debts',
+        'Single manageable payment',
+        'Reduced total financial burden',
+        'Simplified monthly tracking',
+        'Path to debt-free status faster'
       ], 
-      icon: 'briefcase' 
+      icon: 'check-circle' 
     },
     { 
       id: 'mortgage',
@@ -55,6 +55,18 @@ export function renderServices(isPreview = false) {
       icon: 'home' 
     },
     { 
+      id: 'business',
+      name: 'Business Loan', 
+      points: [
+        'Strategic funding for SME growth',
+        'Working capital & expansion funds',
+        'Secured & Unsecured options',
+        'Attractive interest rates',
+        'Seize new market opportunities'
+      ], 
+      icon: 'briefcase' 
+    },
+    { 
       id: 'home-loan',
       name: 'Home Loan', 
       points: [
@@ -65,18 +77,6 @@ export function renderServices(isPreview = false) {
         'Step closer to your dream house'
       ], 
       icon: 'home' 
-    },
-    { 
-      id: 'debt',
-      name: 'Debt Consolidation', 
-      points: [
-        'Combine high-interest debts',
-        'Single manageable payment',
-        'Reduced total financial burden',
-        'Simplified monthly tracking',
-        'Path to debt-free status faster'
-      ], 
-      icon: 'check-circle' 
     },
     { 
       id: 'insurance',
@@ -105,7 +105,7 @@ export function renderServices(isPreview = false) {
   ];
 
   if (isPreview) {
-    services = services.slice(0, 4);
+    services = services.slice(0, 5);
   }
 
   container.innerHTML = `
@@ -118,7 +118,7 @@ export function renderServices(isPreview = false) {
     </div>
 
     <!-- Added items-start to grid-container to prevent sibling stretching -->
-    <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start mb-12">
+    <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 ${isPreview ? 'lg:grid-cols-5' : 'lg:grid-cols-4'} gap-8 items-start mb-12">
       ${services.map((service, index) => `
         <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group flex flex-col" data-aos="fade-up" data-aos-delay="${index * 100}">
           <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
