@@ -53,12 +53,12 @@ export function renderHero() {
         <!-- Decorative cards -->
         <div class="absolute -top-6 -right-6 glass p-6 rounded-xl shadow-xl z-20 hidden lg:block animate-bounce-slow">
           <div class="flex items-center space-x-3">
-             <div class="bg-green-100 p-2 rounded-lg">
-                <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
+             <div class="bg-primary/10 p-2 rounded-lg">
+                <i data-lucide="check-circle" class="w-5 h-5 text-primary"></i>
              </div>
              <div>
-                <p class="text-xs text-gray-500">CIBIL Score</p>
-                <p class="text-sm font-bold">Excellent 750+</p>
+                <p class="text-xs text-gray-500 font-medium">CIBIL Score</p>
+                <p class="text-sm font-bold text-ash">Excellent 750+</p>
              </div>
           </div>
         </div>

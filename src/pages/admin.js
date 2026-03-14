@@ -135,7 +135,7 @@ function renderDashboard(container) {
             </div>
           </div>
           <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex items-center space-x-6">
-            <div class="p-4 bg-blue-50 text-blue-600 rounded-2xl">
+            <div class="p-4 bg-primary/10 text-primary rounded-2xl">
               <i data-lucide="clock" class="w-8 h-8"></i>
             </div>
             <div>

@@ -255,7 +255,7 @@ export function renderContact(isPreview = false) {
   container.innerHTML = `
     <div class="container mx-auto px-6 md:px-12">
       <div class="text-center mb-16">
-        <h2 class="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4" data-aos="fade-up">Contact Us</h2>
+        <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4" data-aos="fade-up">Contact Us</h2>
         <h3 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6" data-aos="fade-up" data-aos-delay="100">${formTitle}</h3>
         <p class="text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
           ${serviceId ? `Please fill out the form below to inquire about our ${formTitle.replace('Inquire for ', '')} services.` : 'Have questions about our services or need financial advice? Our team is here to help you navigate your financial journey.'}
@@ -468,7 +468,7 @@ export function renderContact(isPreview = false) {
             "email": form.querySelector('[name="email"]')?.value || "",
             "contact": form.querySelector('[name="phone"]')?.value || ""
           },
-          "theme": { "color": "#2563eb" },
+          "theme": { "color": "#D4AF37" },
           "modal": {
             "ondismiss": function() {
               alert("Payment cancelled. Please complete the payment to send your inquiry.");
