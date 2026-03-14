@@ -1,11 +1,17 @@
 export function renderHero() {
   const container = document.querySelector('#home');
-  container.className = 'relative min-h-screen pt-24 flex items-center bg-gradient-to-br from-ash-light to-white overflow-hidden';
+  container.className = 'relative min-h-screen pt-24 flex items-center bg-white overflow-hidden';
   
   container.innerHTML = `
-    <!-- Decor Background -->
-    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
-    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[600px] h-[600px] bg-ash-light rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="/image.png" alt="Background" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-white/80"></div>
+    </div>
+
+    <!-- Decor Background (adjusted opacity) -->
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[600px] h-[600px] bg-ash-light rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
 
     <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
       <div data-aos="fade-right">
