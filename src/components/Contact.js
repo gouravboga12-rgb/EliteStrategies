@@ -342,6 +342,20 @@ export function renderContact(isPreview = false) {
             </div>
           </div>
 
+          <!-- Branded Experience Card -->
+          <div class="bg-gradient-to-br from-primary to-primary-dark p-8 rounded-3xl text-white relative overflow-hidden shadow-2xl">
+            <img src="/logo.jpeg" alt="Elite Loan Logo" class="w-32 h-32 opacity-20 absolute -right-4 -bottom-4 transform rotate-12">
+            <div class="relative z-10">
+              <div class="w-16 h-16 bg-white rounded-2xl p-3 mb-6 shadow-xl">
+                <img src="/logo.jpeg" alt="Elite Loan Logo" class="w-full h-full object-contain">
+              </div>
+              <h4 class="text-2xl font-bold mb-2">7+ Years of Trust</h4>
+              <p class="text-white/80 text-sm leading-relaxed">
+                Empowering customers with quick and secure financial solutions since 2017. Experience the expertise of professional loan strategies.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
