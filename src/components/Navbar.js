@@ -12,13 +12,13 @@ export function renderNavbar() {
 
   container.innerHTML = `
     <nav id="navbar-inner" class="transition-all duration-300 py-5 px-6 md:px-12 flex items-center justify-between border-b border-white/10 bg-black">
-      <div class="flex items-center space-x-3">
-        <div id="logo-box" class="w-12 h-12 rounded-lg overflow-hidden transition-all duration-300">
+      <div class="flex items-center space-x-3 h-12">
+        <div id="logo-box" class="w-10 h-10 rounded-lg overflow-hidden transition-all duration-300 flex items-center justify-center">
           <img src="/logo.png" alt="Elite Loan Logo" class="w-full h-full object-contain">
         </div>
-        <div>
+        <div class="flex flex-col justify-center h-full">
           <h1 id="brand-name" class="text-xl md:text-2xl font-black text-white leading-none tracking-tighter transition-colors duration-300">ELITE LOAN</h1>
-          <p class="text-[10px] md:text-xs text-primary font-bold tracking-[0.2em] uppercase">Strategies</p>
+          <p class="text-[10px] md:text-xs text-primary font-bold tracking-[0.2em] uppercase mt-0.5">Strategies</p>
         </div>
       </div>
 

@@ -6,8 +6,8 @@ export function renderFooter() {
     <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       <!-- Brand -->
       <div class="flex flex-col space-y-6">
-        <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 rounded-lg overflow-hidden transition-all duration-300">
+        <div class="flex items-center space-x-3 min-h-[1.5rem]">
+          <div class="w-10 h-10 rounded-lg overflow-hidden transition-all duration-300">
             <img src="/logo.png" alt="Elite Loan Logo" class="w-full h-full object-contain">
           </div>
           <div>
@@ -47,16 +47,16 @@ export function renderFooter() {
       <div>
         <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact Info</h4>
         <ul class="space-y-4 text-sm">
-          <li class="flex items-start space-x-3">
+          <li class="flex items-center space-x-3">
             <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
             <span>+91 866-062-7567</span>
           </li>
-          <li class="flex items-start space-x-3">
+          <li class="flex items-center space-x-3">
             <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
             <span class="text-xs">eliteloanstrategies5@gmail.com</span>
           </li>
           <li class="flex items-start space-x-3">
-            <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i>
+            <i data-lucide="map-pin" class="w-5 h-5 text-primary mt-1"></i>
             <span>No. 710, 1st Main Road, 4th Cross, near Govt School, Mathikere, Bangalore, 560054</span>
           </li>
         </ul>
