@@ -27,11 +27,11 @@ export function renderHero() {
         </p>
         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
           <a href="/services.html" class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl font-bold transition-smooth shadow-xl flex items-center justify-center space-x-2 group">
-            <span>Explore Services</span>
+            <span id="type-explore"></span>
             <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
           </a>
           <a href="/contact.html" class="bg-white hover:bg-gray-50 text-primary border-2 border-primary px-8 py-4 rounded-xl font-bold transition-smooth flex items-center justify-center">
-            Contact Expert
+            <span id="type-contact"></span>
           </a>
         </div>
         
@@ -74,4 +74,28 @@ export function renderHero() {
       </div>
     </div>
   `;
+
+  // Typing animation for CTA buttons
+  const typeEffect = (elementId, text, speed = 100) => {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+    let i = 0;
+    element.innerHTML = '';
+    const typing = setInterval(() => {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(typing);
+      }
+    }, speed);
+  };
+
+  // Initial call with a small delay for better visual effect
+  setTimeout(() => {
+    typeEffect('type-explore', 'Explore Services', 100);
+    setTimeout(() => {
+      typeEffect('type-contact', 'Contact Expert', 100);
+    }, 1500); // Start second button after first one is mostly done
+  }, 500);
 }
