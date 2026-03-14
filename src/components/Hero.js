@@ -51,11 +51,9 @@ export function renderHero() {
         <div class="glass p-4 rounded-2xl shadow-2xl relative z-10">
            <!-- Representational illustration or image -->
            <div class="aspect-square bg-gradient-to-tr from-primary to-primary-light rounded-xl flex items-center justify-center text-white overflow-hidden relative">
-              <img src="/logo.png" alt="Elite Loan Logo" class="w-48 h-48 opacity-20 absolute -right-8 -bottom-8 transform rotate-12">
+              
               <div class="text-center p-8 z-10">
-                <div class="w-24 h-24 mx-auto mb-6">
-                  <img src="/logo.png" alt="Elite Loan Logo" class="w-full h-full object-contain">
-                </div>
+                
                 <h3 class="text-2xl font-bold mb-2">Instant Loan Approval</h3>
                 <p class="opacity-90 leading-relaxed max-w-xs mx-auto">₹250+ Crore Loan Amount Disbursed — Empowering customers with quick and secure financial</p>
               </div>
