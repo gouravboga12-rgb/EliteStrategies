@@ -11,23 +11,23 @@ export function renderNavbar() {
   };
 
   container.innerHTML = `
-    <nav id="navbar-inner" class="transition-all duration-300 py-5 px-6 md:px-12 flex items-center justify-between border-b border-gray-100 bg-white">
+    <nav id="navbar-inner" class="transition-all duration-300 py-5 px-6 md:px-12 flex items-center justify-between border-b border-white/10 bg-black">
       <div class="flex items-center space-x-3">
-        <div id="logo-box" class="w-12 h-12 rounded-lg overflow-hidden shadow-sm border border-gray-100 bg-white p-1 transition-all duration-300">
+        <div id="logo-box" class="w-12 h-12 rounded-lg overflow-hidden transition-all duration-300">
           <img src="/logo.png" alt="Elite Loan Logo" class="w-full h-full object-contain">
         </div>
         <div>
-          <h1 id="brand-name" class="text-xl md:text-2xl font-black text-ash leading-none tracking-tighter transition-colors duration-300">ELITE LOAN</h1>
+          <h1 id="brand-name" class="text-xl md:text-2xl font-black text-white leading-none tracking-tighter transition-colors duration-300">ELITE LOAN</h1>
           <p class="text-[10px] md:text-xs text-primary font-bold tracking-[0.2em] uppercase">Strategies</p>
         </div>
       </div>
 
       <!-- Desktop Navigation -->
       <div id="nav-links" class="hidden md:flex items-center space-x-10">
-        <a href="/" class="nav-link ${isActive('/') ? 'text-primary' : 'text-ash'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">Home</a>
-        <a href="/about.html" class="nav-link ${isActive('/about.html') ? 'text-primary' : 'text-ash'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">About</a>
-        <a href="/services.html" class="nav-link ${isActive('/services.html') ? 'text-primary' : 'text-ash'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">Services</a>
-        <a href="/contact.html" class="nav-link ${isActive('/contact.html') ? 'text-primary' : 'text-ash'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">Contact</a>
+        <a href="/" class="nav-link ${isActive('/') ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">Home</a>
+        <a href="/about.html" class="nav-link ${isActive('/about.html') ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">About</a>
+        <a href="/services.html" class="nav-link ${isActive('/services.html') ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">Services</a>
+        <a href="/contact.html" class="nav-link ${isActive('/contact.html') ? 'text-primary' : 'text-gray-300'} hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm">Contact</a>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -36,11 +36,11 @@ export function renderNavbar() {
       </button>
 
       <!-- Mobile Navigation Menu -->
-      <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 py-6 px-6 flex flex-col space-y-4 absolute top-full left-0 w-full shadow-2xl animate-fade-in-down">
-        <a href="/" class="mobile-nav-link ${isActive('/') ? 'text-primary font-bold' : 'text-gray-700'} font-medium">Home</a>
-        <a href="/about.html" class="mobile-nav-link ${isActive('/about.html') ? 'text-primary font-bold' : 'text-gray-700'} font-medium">About</a>
-        <a href="/services.html" class="mobile-nav-link ${isActive('/services.html') ? 'text-primary font-bold' : 'text-gray-700'} font-medium">Services</a>
-        <a href="/contact.html" class="mobile-nav-link ${isActive('/contact.html') ? 'text-primary font-bold' : 'text-gray-700'} font-medium">Contact</a>
+      <div id="mobile-menu" class="hidden md:hidden bg-black border-t border-white/10 py-6 px-6 flex flex-col space-y-4 absolute top-full left-0 w-full shadow-2xl animate-fade-in-down">
+        <a href="/" class="mobile-nav-link ${isActive('/') ? 'text-primary font-bold' : 'text-gray-300'} font-medium">Home</a>
+        <a href="/about.html" class="mobile-nav-link ${isActive('/about.html') ? 'text-primary font-bold' : 'text-gray-300'} font-medium">About</a>
+        <a href="/services.html" class="mobile-nav-link ${isActive('/services.html') ? 'text-primary font-bold' : 'text-gray-300'} font-medium">Services</a>
+        <a href="/contact.html" class="mobile-nav-link ${isActive('/contact.html') ? 'text-primary font-bold' : 'text-gray-300'} font-medium">Contact</a>
         <a href="https://wa.me/918660627567?text=Hello,%20I%20am%20interested%20in%20your%20financial%20services." target="_blank" class="bg-primary text-white text-center py-3 rounded-lg font-bold shadow-lg">
           Chat with Us
         </a>
@@ -59,25 +59,12 @@ export function renderNavbar() {
     
     if (isScrolled) {
       innerNav.className = 'transition-all duration-300 py-3 px-6 md:px-12 flex items-center justify-between bg-black shadow-2xl';
-      brandName.className = 'text-xl md:text-2xl font-black text-white leading-none tracking-tighter transition-colors duration-300';
-      logoBox.className = 'w-10 h-10 rounded-lg overflow-hidden border border-white/20 bg-white p-1 transition-all duration-300';
-      navLinks.forEach(link => {
-        if (!link.classList.contains('text-primary')) {
-          link.className = 'nav-link text-gray-300 hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm';
-        }
-      });
-      if (mobileMenu) mobileMenu.className = 'hidden md:hidden bg-black border-t border-white/10 py-6 px-6 flex flex-col space-y-4 absolute top-full left-0 w-full shadow-2xl';
+      logoBox.className = 'w-10 h-10 rounded-lg overflow-hidden transition-all duration-300';
     } else {
-      innerNav.className = 'transition-all duration-300 py-5 px-6 md:px-12 flex items-center justify-between border-b border-gray-100 bg-white';
-      brandName.className = 'text-xl md:text-2xl font-black text-ash leading-none tracking-tighter transition-colors duration-300';
-      logoBox.className = 'w-12 h-12 rounded-lg overflow-hidden shadow-sm border border-gray-100 bg-white p-1 transition-all duration-300';
-      navLinks.forEach(link => {
-        if (!link.classList.contains('text-primary')) {
-          link.className = 'nav-link text-ash hover:text-primary transition-smooth font-bold uppercase tracking-wider text-sm';
-        }
-      });
-      if (mobileMenu) mobileMenu.className = 'hidden md:hidden bg-white border-t border-gray-100 py-6 px-6 flex flex-col space-y-4 absolute top-full left-0 w-full shadow-2xl';
+      innerNav.className = 'transition-all duration-300 py-5 px-6 md:px-12 flex items-center justify-between border-b border-white/10 bg-black';
+      logoBox.className = 'w-12 h-12 rounded-lg overflow-hidden transition-all duration-300';
     }
+    if (mobileMenu) mobileMenu.className = 'hidden md:hidden bg-black border-t border-white/10 py-6 px-6 flex flex-col space-y-4 absolute top-full left-0 w-full shadow-2xl';
   };
 
   window.addEventListener('scroll', updateNavbar);
