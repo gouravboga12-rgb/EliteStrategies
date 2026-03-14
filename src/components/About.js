@@ -9,10 +9,10 @@ export function renderAbout(isPreview = false) {
         <div class="relative" data-aos="fade-right">
           <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
              <div class="aspect-[4/3] bg-primary flex items-center justify-center text-white relative">
-                <img src="/logo.jpeg" alt="Elite Loan Logo" class="w-48 h-48 opacity-20 absolute -right-8 -bottom-8 transform rotate-12">
+                <img src="/logo.png" alt="Elite Loan Logo" class="w-48 h-48 opacity-20 absolute -right-8 -bottom-8 transform rotate-12">
                 <div class="p-12 text-center z-10">
                    <div class="w-20 h-20 mx-auto mb-6 bg-white rounded-2xl p-3 shadow-xl">
-                     <img src="/logo.jpeg" alt="Elite Loan Logo" class="w-full h-full object-contain">
+                     <img src="/logo.png" alt="Elite Loan Logo" class="w-full h-full object-contain">
                    </div>
                    <h3 class="text-3xl font-bold mb-4">7+ Years of Excellence</h3>
                    <p class="text-ash-light italic">"Providing professional guidance for your financial freedom."</p>

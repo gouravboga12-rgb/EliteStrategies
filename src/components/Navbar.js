@@ -14,7 +14,7 @@ export function renderNavbar() {
     <nav id="navbar-inner" class="transition-all duration-300 py-5 px-6 md:px-12 flex items-center justify-between border-b border-gray-100 bg-white">
       <div class="flex items-center space-x-3">
         <div id="logo-box" class="w-12 h-12 rounded-lg overflow-hidden shadow-sm border border-gray-100 bg-white p-1 transition-all duration-300">
-          <img src="/logo.jpeg" alt="Elite Loan Logo" class="w-full h-full object-contain">
+          <img src="/logo.png" alt="Elite Loan Logo" class="w-full h-full object-contain">
         </div>
         <div>
           <h1 id="brand-name" class="text-xl md:text-2xl font-black text-ash leading-none tracking-tighter transition-colors duration-300">ELITE LOAN</h1>
