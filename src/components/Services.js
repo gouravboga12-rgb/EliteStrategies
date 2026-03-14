@@ -110,7 +110,7 @@ export function renderServices(isPreview = false) {
 
   container.innerHTML = `
     <div class="container mx-auto px-6 md:px-12 text-center mb-16">
-      <h2 class="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4" data-aos="fade-up">Our Services</h2>
+      <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4" data-aos="fade-up">Our Services</h2>
       <h3 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6" data-aos="fade-up" data-aos-delay="100">Tailored Financial Solutions</h3>
       <p class="text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
         We provide a wide range of financial services designed to meet your individual and business needs with efficiency and trust.
@@ -121,7 +121,7 @@ export function renderServices(isPreview = false) {
     <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 ${isPreview ? 'lg:grid-cols-5' : 'lg:grid-cols-4'} gap-8 items-start mb-12">
       ${services.map((service, index) => `
         <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group flex flex-col" data-aos="fade-up" data-aos-delay="${index * 100}">
-          <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
+          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
             <i data-lucide="${service.icon}" class="w-8 h-8"></i>
           </div>
           <h4 class="text-xl font-bold text-gray-900 mb-4 min-h-[3.5rem] flex items-start">${service.name}</h4>
@@ -153,7 +153,7 @@ export function renderServices(isPreview = false) {
 
     ${isPreview ? `
       <div class="text-center" data-aos="fade-up">
-        <a href="/services.html" class="inline-flex items-center space-x-2 bg-white text-primary border-2 border-primary px-10 py-4 rounded-xl font-bold hover:bg-blue-50 transition-smooth shadow-lg group">
+        <a href="/services.html" class="inline-flex items-center space-x-2 bg-white text-primary border-2 border-primary px-10 py-4 rounded-xl font-bold hover:bg-primary/10 transition-smooth shadow-lg group">
           <span>View All Services</span>
           <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
         </a>

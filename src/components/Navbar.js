@@ -14,7 +14,7 @@ export function renderNavbar() {
     <div class="glass shadow-md py-4 px-6 md:px-12 flex items-center justify-between">
       <div class="flex items-center space-x-2">
         <div class="bg-primary p-2 rounded-lg">
-          <i data-lucide="briefcase" class="w-6 h-6 text-white text-blue-500"></i>
+          <i data-lucide="briefcase" class="w-6 h-6 text-white"></i>
         </div>
         <div>
           <h1 class="text-xl md:text-2xl font-bold text-primary leading-none">ELITE LOAN</h1>
@@ -42,7 +42,7 @@ export function renderNavbar() {
       <a href="/about.html" class="mobile-nav-link ${isActive('/about.html') ? 'text-primary font-bold' : 'text-gray-700'} font-medium">About</a>
       <a href="/services.html" class="mobile-nav-link ${isActive('/services.html') ? 'text-primary font-bold' : 'text-gray-700'} font-medium">Services</a>
       <a href="/contact.html" class="mobile-nav-link ${isActive('/contact.html') ? 'text-primary font-bold' : 'text-gray-700'} font-medium">Contact</a>
-      <a href="https://wa.me/91XXXXXXXXXX?text=Hello,%20I%20am%20interested%20in%20your%20financial%20services." target="_blank" class="bg-primary text-white text-center py-3 rounded-lg font-bold shadow-lg">
+      <a href="https://wa.me/918660627567?text=Hello,%20I%20am%20interested%20in%20your%20financial%20services." target="_blank" class="bg-primary text-white text-center py-3 rounded-lg font-bold shadow-lg">
         Chat with Us
       </a>
     </div>

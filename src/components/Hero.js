@@ -1,15 +1,15 @@
 export function renderHero() {
   const container = document.querySelector('#home');
-  container.className = 'relative min-h-screen pt-24 flex items-center bg-gradient-to-br from-blue-50 to-white overflow-hidden';
+  container.className = 'relative min-h-screen pt-24 flex items-center bg-gradient-to-br from-ash-light to-white overflow-hidden';
   
   container.innerHTML = `
     <!-- Decor Background -->
-    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-blue-100 rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
-    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
 
     <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
       <div data-aos="fade-right">
-        <span class="inline-block py-1 px-3 bg-blue-100 text-primary text-sm font-semibold rounded-full mb-4">Empowering Your Financial Growth</span>
+        <span class="inline-block py-1 px-3 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4">Empowering Your Financial Growth</span>
         <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
           Elite Loan <span class="text-primary italic">Strategies</span>
         </h1>
@@ -28,9 +28,9 @@ export function renderHero() {
         
         <div class="mt-12 flex items-center space-x-6">
           <div class="flex -space-x-3">
-            <div class="w-10 h-10 rounded-full border-2 border-white bg-blue-200"></div>
-            <div class="w-10 h-10 rounded-full border-2 border-white bg-blue-300"></div>
-            <div class="w-10 h-10 rounded-full border-2 border-white bg-blue-400"></div>
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-primary-light/30"></div>
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-primary-light/50"></div>
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-primary-light"></div>
           </div>
           <div class="text-sm text-gray-500">
             <span class="font-bold text-gray-900">500+</span> Customers Served
@@ -41,7 +41,7 @@ export function renderHero() {
       <div class="relative" data-aos="zoom-in" data-aos-delay="200">
         <div class="glass p-4 rounded-2xl shadow-2xl relative z-10">
            <!-- Representational illustration or image -->
-           <div class="aspect-square bg-gradient-to-tr from-primary to-blue-400 rounded-xl flex items-center justify-center text-white overflow-hidden relative">
+           <div class="aspect-square bg-gradient-to-tr from-primary to-primary-light rounded-xl flex items-center justify-center text-white overflow-hidden relative">
               <i data-lucide="briefcase" class="w-32 h-32 opacity-20 absolute -right-4 -bottom-4"></i>
               <div class="text-center p-8">
                 <i data-lucide="check-circle" class="w-16 h-16 mx-auto mb-4 text-white"></i>

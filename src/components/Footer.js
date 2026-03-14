@@ -8,7 +8,7 @@ export function renderFooter() {
       <div class="flex flex-col space-y-6">
         <div class="flex items-center space-x-2">
           <div class="bg-primary p-2 rounded-lg">
-            <i data-lucide="briefcase" class="w-6 h-6 text-white text-blue-500"></i>
+            <i data-lucide="briefcase" class="w-6 h-6 text-white"></i>
           </div>
           <h1 class="text-2xl font-bold text-white">ELITE LOAN</h1>
         </div>
