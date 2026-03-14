@@ -19,7 +19,7 @@ export function renderHero() {
           <span class="inline-block py-1 px-3 bg-primary/20 text-primary-dark text-sm font-semibold rounded-full whitespace-nowrap">Empowering Your Financial Growth</span>
           <span class="inline-block py-1 px-3 bg-ash/10 text-ash text-sm font-bold rounded-full whitespace-nowrap">7+ Years Experience</span>
         </div>
-        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 flex flex-wrap gap-x-2 md:gap-x-3 items-end min-h-[2.5rem] md:min-h-[3.75rem]">
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 flex flex-wrap justify-center md:justify-start gap-x-2 md:gap-x-3 items-end min-h-[2.5rem] md:min-h-[3.75rem]">
           <span id="type-title-1"></span>
           <span id="type-title-2" class="text-primary italic"></span>
         </h1>
