@@ -7,10 +7,13 @@ export function renderFooter() {
       <!-- Brand -->
       <div class="flex flex-col space-y-6">
         <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 rounded-lg overflow-hidden bg-white p-1">
+          <div class="w-12 h-12 rounded-lg overflow-hidden transition-all duration-300">
             <img src="/logo.png" alt="Elite Loan Logo" class="w-full h-full object-contain">
           </div>
-          <h1 class="text-2xl font-black text-white tracking-tighter">ELITE LOAN</h1>
+          <div>
+            <h1 class="text-xl md:text-2xl font-black text-white leading-none tracking-tighter">ELITE LOAN</h1>
+            <p class="text-[10px] md:text-xs text-primary font-bold tracking-[0.2em] uppercase">Strategies</p>
+          </div>
         </div>
         <p class="text-gray-500 leading-relaxed">
           The ultimate strategy for your financial success. Providing expert guidance and customized loan solutions for your individual needs.
