@@ -9,7 +9,10 @@ export function renderHero() {
 
     <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
       <div data-aos="fade-right">
-        <span class="inline-block py-1 px-3 bg-primary/20 text-primary-dark text-sm font-semibold rounded-full mb-4">Empowering Your Financial Growth</span>
+        <div class="flex items-center space-x-3 mb-4">
+          <span class="inline-block py-1 px-3 bg-primary/20 text-primary-dark text-sm font-semibold rounded-full">Empowering Your Financial Growth</span>
+          <span class="inline-block py-1 px-3 bg-ash/10 text-ash text-sm font-bold rounded-full">7+ Years Experience</span>
+        </div>
         <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
           Elite Loan <span class="text-primary italic">Strategies</span>
         </h1>
@@ -33,7 +36,7 @@ export function renderHero() {
             <div class="w-10 h-10 rounded-full border-2 border-white bg-primary-light"></div>
           </div>
           <div class="text-sm text-gray-500">
-            <span class="font-bold text-gray-900">500+</span> Customers Served
+            <span class="font-bold text-gray-900">2500+</span> Customers Served
           </div>
         </div>
       </div>
@@ -48,7 +51,7 @@ export function renderHero() {
                   <img src="/logo.jpeg" alt="Elite Loan Logo" class="w-full h-full object-contain">
                 </div>
                 <h3 class="text-2xl font-bold mb-2">Instant Loan Approval</h3>
-                <p class="opacity-90">Experience seamless processing and transparent guidance.</p>
+                <p class="opacity-90 leading-relaxed max-w-xs mx-auto">₹250+ Crore Loan Amount Disbursed — Empowering customers with quick and secure financial</p>
               </div>
            </div>
         </div>
