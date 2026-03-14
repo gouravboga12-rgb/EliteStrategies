@@ -329,6 +329,8 @@ export function renderContact(isPreview = false) {
         const saveInquiry = (paymentId = "DEMO") => {
           const inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
           const formData = new FormData(form);
+          const formDetails = Object.fromEntries(formData.entries());
+          
           const newInquiry = {
             id: Date.now(),
             name: formData.get('name') || formData.get('fullName') || 'Anonymous',
@@ -338,7 +340,9 @@ export function renderContact(isPreview = false) {
             amount: amountInRupees,
             paymentId,
             date: new Date().toISOString(),
-            status: 'Paid'
+            status: 'Paid',
+            details: formDetails, // Capture ALL fields
+            slot: 'Not Assigned' // Default slot
           };
           inquiries.unshift(newInquiry);
           localStorage.setItem('inquiries', JSON.stringify(inquiries));
