@@ -19,8 +19,9 @@ export function renderHero() {
           <span class="inline-block py-1 px-3 bg-primary/20 text-primary-dark text-sm font-semibold rounded-full whitespace-nowrap">Empowering Your Financial Growth</span>
           <span class="inline-block py-1 px-3 bg-ash/10 text-ash text-sm font-bold rounded-full whitespace-nowrap">7+ Years Experience</span>
         </div>
-        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-          Elite Loan <span class="text-primary italic">Strategies</span>
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6 flex flex-wrap gap-x-2 md:gap-x-3 items-end min-h-[2.5rem] md:min-h-[3.75rem]">
+          <span id="type-title-1"></span>
+          <span id="type-title-2" class="text-primary italic"></span>
         </h1>
         <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
           Your trusted partner in navigating the world of finance. From quick personal loans to strategic business funding, we simplify the path to your goals.
@@ -35,7 +36,7 @@ export function renderHero() {
           </a>
         </div>
         
-        <div class="mt-12 flex flex-col items-center md:items-start space-y-4 md:space-y-0 md:flex-row md:space-x-6">
+        <div class="mt-12 flex flex-col items-center md:items-start space-y-4 md:space-y-0 md:flex-row md:space-x-6" data-aos="zoom-in-up" data-aos-delay="1000">
           <div class="flex -space-x-3">
             <div class="w-10 h-10 rounded-full border-2 border-white bg-ash shadow-sm"></div>
             <div class="w-10 h-10 rounded-full border-2 border-white bg-primary shadow-sm"></div>
@@ -75,10 +76,13 @@ export function renderHero() {
     </div>
   `;
 
-  // Typing animation for CTA buttons
-  const typeEffect = (elementId, text, speed = 100) => {
+  // Typing animation for Titles and CTA buttons
+  const typeEffect = (elementId, text, speed = 80, callback = null) => {
     const element = document.getElementById(elementId);
-    if (!element) return;
+    if (!element) {
+      if(callback) callback();
+      return;
+    }
     let i = 0;
     element.innerHTML = '';
     const typing = setInterval(() => {
@@ -87,15 +91,21 @@ export function renderHero() {
         i++;
       } else {
         clearInterval(typing);
+        if (callback) callback();
       }
     }, speed);
   };
 
-  // Initial call with a small delay for better visual effect
+  // Sequential typing sequence
   setTimeout(() => {
-    typeEffect('type-explore', 'Explore Services', 100);
-    setTimeout(() => {
-      typeEffect('type-contact', 'Contact Expert', 100);
-    }, 1500); // Start second button after first one is mostly done
-  }, 500);
+    typeEffect('type-title-1', 'Elite Loan ', 60, () => {
+      typeEffect('type-title-2', 'Strategies', 60, () => {
+        setTimeout(() => {
+          typeEffect('type-explore', 'Explore Services', 50, () => {
+             typeEffect('type-contact', 'Contact Expert', 50);
+          });
+        }, 300);
+      });
+    });
+  }, 300);
 }
