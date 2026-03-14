@@ -224,6 +224,7 @@ export function renderContact(isPreview = false) {
               <input type="email" name="email" placeholder="john@gmail.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" required>
             </div>
           </div>
+          ${bookingFields}
         </div>
       `;
     }
