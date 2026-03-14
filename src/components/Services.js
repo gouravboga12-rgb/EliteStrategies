@@ -5,104 +5,20 @@ export function renderServices(isPreview = false) {
   if (!container) return;
   container.className = 'py-24 bg-gray-50';
   
-  let services = [
-    { 
-      id: 'cibil',
-      name: 'CIBIL Report', 
-      points: [
-        'Official credit score analysis',
-        'Detailed credit history report',
-        'Identify errors in your report',
-        'Personalized score improvement tips',
-        'Better loan approval chances'
-      ], 
-      icon: 'info' 
-    },
-    { 
-      id: 'personal',
-      name: 'Personal Loan', 
-      points: [
-        'Quick processing & minimal docs',
-        'Competitive interest rates',
-        'Flexible repayment tenures',
-        'No collateral required',
-        'Funds available within hours'
-      ], 
-      icon: 'home' 
-    },
-    { 
-      id: 'debt',
-      name: 'Debt Consolidation', 
-      points: [
-        'Combine high-interest debts',
-        'Single manageable payment',
-        'Reduced total financial burden',
-        'Simplified monthly tracking',
-        'Path to debt-free status faster'
-      ], 
-      icon: 'check-circle' 
-    },
-    { 
-      id: 'mortgage',
-      name: 'Mortgage Loan', 
-      points: [
-        'High capital against property',
-        'Lower interest rates than personal',
-        'Retained property ownership',
-        'Longer repayment tenures',
-        'Use for business or education'
-      ], 
-      icon: 'home' 
-    },
-    { 
-      id: 'business',
-      name: 'Business Loan', 
-      points: [
-        'Strategic funding for SME growth',
-        'Working capital & expansion funds',
-        'Secured & Unsecured options',
-        'Attractive interest rates',
-        'Seize new market opportunities'
-      ], 
-      icon: 'briefcase' 
-    },
-    { 
-      id: 'home-loan',
-      name: 'Home Loan', 
-      points: [
-        'Long repayment up to 30 years',
-        'Easy legal & tech guidance',
-        'Floating & Fixed rate options',
-        'Simplified documentation',
-        'Step closer to your dream house'
-      ], 
-      icon: 'home' 
-    },
-    { 
-      id: 'insurance',
-      name: 'Insurance', 
-      points: [
-        'Health, Life, & Security plans',
-        'Unbiased policy comparison',
-        'Affordable premium options',
-        'Total family protection',
-        'Expert guidance on fine print'
-      ], 
-      icon: 'check-circle' 
-    },
-    { 
-      id: 'account',
-      name: 'Online Account Opening', 
-      points: [
-        'Zero-contact digital process',
-        'Instant document verification',
-        'Home-based banking setup',
-        'Quick savings & business accounts',
-        'Guidance on digital features'
-      ], 
-      icon: 'check-circle' 
-    }
+  // Default services for fallback
+  const DEFAULT_SERVICES = [
+    { id: 'cibil', name: 'CIBIL Report', cost: 499, points: ['Official credit score analysis', 'Detailed credit history report', 'Identify errors in your report', 'Personalized score improvement tips', 'Better loan approval chances'], icon: 'info' },
+    { id: 'personal', name: 'Personal Loan', cost: 0, points: ['Quick processing & minimal docs', 'Competitive interest rates', 'Flexible repayment tenures', 'No collateral required', 'Funds available within hours'], icon: 'home' },
+    { id: 'debt', name: 'Debt Consolidation', cost: 0, points: ['Combine high-interest debts', 'Single manageable payment', 'Reduced total financial burden', 'Simplified monthly tracking', 'Path to debt-free status faster'], icon: 'check-circle' },
+    { id: 'mortgage', name: 'Mortgage Loan', cost: 0, points: ['High capital against property', 'Lower interest rates than personal', 'Retained property ownership', 'Longer repayment tenures', 'Use for business or education'], icon: 'home' },
+    { id: 'business', name: 'Business Loan', cost: 0, points: ['Strategic funding for SME growth', 'Working capital & expansion funds', 'Secured & Unsecured options', 'Attractive interest rates', 'Seize new market opportunities'], icon: 'briefcase' },
+    { id: 'home-loan', name: 'Home Loan', cost: 0, points: ['Long repayment up to 30 years', 'Easy legal & tech guidance', 'Floating & Fixed rate options', 'Simplified documentation', 'Step closer to your dream house'], icon: 'home' },
+    { id: 'insurance', name: 'Insurance', cost: 999, points: ['Health, Life, & Security plans', 'Unbiased policy comparison', 'Affordable premium options', 'Total family protection', 'Expert guidance on fine print'], icon: 'check-circle' },
+    { id: 'account', name: 'Online Account Opening', cost: 199, points: ['Zero-contact digital process', 'Instant document verification', 'Home-based banking setup', 'Quick savings & business accounts', 'Guidance on digital features'], icon: 'check-circle' }
   ];
+
+  // Load from localStorage or use defaults
+  let services = JSON.parse(localStorage.getItem('services')) || DEFAULT_SERVICES;
 
   if (isPreview) {
     services = services.slice(0, 5);
@@ -124,7 +40,11 @@ export function renderServices(isPreview = false) {
           <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
             <i data-lucide="${service.icon}" class="w-8 h-8"></i>
           </div>
-          <h4 class="text-xl font-bold text-gray-900 mb-4 min-h-[3.5rem] flex items-start">${service.name}</h4>
+          <h4 class="text-xl font-bold text-gray-900 mb-1 flex items-start">${service.name}</h4>
+          <div class="mb-4">
+            <span class="text-primary font-bold text-lg">₹${service.cost || 0}</span>
+            ${service.cost === 0 ? '<span class="text-[10px] text-gray-400 ml-1 uppercase">Processing Fee</span>' : '<span class="text-[10px] text-gray-400 ml-1 uppercase">Service Fee</span>'}
+          </div>
           
           <div id="desc-${service.id}" class="hidden mb-6 transition-all duration-300">
             <ul class="space-y-3">

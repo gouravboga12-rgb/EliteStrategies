@@ -19,6 +19,11 @@ export function renderContact(isPreview = false) {
     '06:00 PM - 06:30 PM', '06:30 PM - 07:00 PM'
   ];
 
+  // Load services to get costs
+  const services = JSON.parse(localStorage.getItem('services') || '[]');
+  const currentService = services.find(s => s.id === serviceId);
+  const serviceCost = currentService ? currentService.cost : 0;
+
   // Helper to get booking counts for a specific date
   const getSlotAvailability = (date) => {
     const inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
@@ -274,7 +279,7 @@ export function renderContact(isPreview = false) {
               <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 space-y-3">
                 <div class="flex justify-between items-center text-sm text-gray-500">
                   <span>Service Professional Fee</span>
-                  <span>₹${serviceId === 'cibil' ? '99' : '199'}</span>
+                  <span>₹${serviceCost}</span>
                 </div>
                 <div class="flex justify-between items-center text-sm text-gray-500">
                   <span>Processing Fee</span>
@@ -282,7 +287,7 @@ export function renderContact(isPreview = false) {
                 </div>
                 <div class="pt-3 border-t border-gray-200 flex justify-between items-center">
                   <span class="font-bold text-gray-900">Total Amount</span>
-                  <span class="text-xl font-bold text-primary">₹${serviceId === 'cibil' ? '99' : '199'}</span>
+                  <span class="text-xl font-bold text-primary">₹${serviceCost}</span>
                 </div>
               </div>
 
@@ -376,8 +381,8 @@ export function renderContact(isPreview = false) {
       };
 
        if (serviceId) {
-        const amountInRupees = serviceId === 'cibil' ? 99 : 199;
-        const serviceName = serviceId === 'cibil' ? 'CIBIL Report' : (serviceNames[serviceId] || 'Financial Service');
+        const amountInRupees = serviceCost;
+        const serviceName = currentService ? currentService.name : 'Financial Service';
         const keyId = "rzp_test_EliteLoan"; // IMPORTANT: Replace this with your actual Razorpay Key ID
 
         // Function to save inquiry to localStorage for Admin Panel

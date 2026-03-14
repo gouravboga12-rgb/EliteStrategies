@@ -4,6 +4,21 @@ import '../style.css';
 // Mock state management
 let inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
 
+// Default services if not in storage
+const DEFAULT_SERVICES = [
+  { id: 'cibil', name: 'CIBIL Report', cost: 499, points: ['Official credit score analysis', 'Detailed credit history report', 'Identify errors in your report', 'Personalized score improvement tips', 'Better loan approval chances'], icon: 'info' },
+  { id: 'personal', name: 'Personal Loan', cost: 0, points: ['Quick processing & minimal docs', 'Competitive interest rates', 'Flexible repayment tenures', 'No collateral required', 'Funds available within hours'], icon: 'home' },
+  { id: 'debt', name: 'Debt Consolidation', cost: 0, points: ['Combine high-interest debts', 'Single manageable payment', 'Reduced total financial burden', 'Simplified monthly tracking', 'Path to debt-free status faster'], icon: 'check-circle' },
+  { id: 'mortgage', name: 'Mortgage Loan', cost: 0, points: ['High capital against property', 'Lower interest rates than personal', 'Retained property ownership', 'Longer repayment tenures', 'Use for business or education'], icon: 'home' },
+  { id: 'business', name: 'Business Loan', cost: 0, points: ['Strategic funding for SME growth', 'Working capital & expansion funds', 'Secured & Unsecured options', 'Attractive interest rates', 'Seize new market opportunities'], icon: 'briefcase' },
+  { id: 'home-loan', name: 'Home Loan', cost: 0, points: ['Long repayment up to 30 years', 'Easy legal & tech guidance', 'Floating & Fixed rate options', 'Simplified documentation', 'Step closer to your dream house'], icon: 'home' },
+  { id: 'insurance', name: 'Insurance', cost: 999, points: ['Health, Life, & Security plans', 'Unbiased policy comparison', 'Affordable premium options', 'Total family protection', 'Expert guidance on fine print'], icon: 'check-circle' },
+  { id: 'account', name: 'Online Account Opening', cost: 199, points: ['Zero-contact digital process', 'Instant document verification', 'Home-based banking setup', 'Quick savings & business accounts', 'Guidance on digital features'], icon: 'check-circle' }
+];
+
+let services = JSON.parse(localStorage.getItem('services') || JSON.stringify(DEFAULT_SERVICES));
+let activeTab = 'dashboard';
+
 function renderAdmin() {
   const container = document.querySelector('#admin-app');
   if (!container) return;
@@ -15,7 +30,11 @@ function renderAdmin() {
     return;
   }
 
-  renderDashboard(container);
+  if (activeTab === 'dashboard') {
+    renderDashboard(container);
+  } else if (activeTab === 'services') {
+    renderServicesManager(container);
+  }
 }
 
 function renderLogin(container) {
@@ -76,17 +95,17 @@ function renderDashboard(container) {
       </div>
       
       <nav class="flex-1 p-6 space-y-2">
-        <a href="#" class="flex items-center space-x-3 px-4 py-3 bg-primary text-white rounded-xl font-medium transition-all shadow-lg shadow-primary/20">
+        <button id="view-dashboard" class="w-full flex items-center space-x-3 px-4 py-3 ${activeTab === 'dashboard' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-gray-500 hover:bg-gray-100'} rounded-xl font-medium transition-all">
           <i data-lucide="pie-chart" class="w-5 h-5"></i>
           <span>Dashboard</span>
-        </a>
+        </button>
+        <button id="view-services" class="w-full flex items-center space-x-3 px-4 py-3 ${activeTab === 'services' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-gray-500 hover:bg-gray-100'} rounded-xl font-medium transition-all">
+          <i data-lucide="briefcase" class="w-5 h-5"></i>
+          <span>Manage Services</span>
+        </button>
         <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl font-medium transition-all">
           <i data-lucide="users" class="w-5 h-5"></i>
           <span>Inquiries</span>
-        </a>
-        <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl font-medium transition-all">
-          <i data-lucide="file-text" class="w-5 h-5"></i>
-          <span>Reports</span>
         </a>
       </nav>
       
@@ -204,10 +223,139 @@ function renderDashboard(container) {
     </main>
   `;
 
-  createIcons({ icons: { Layout, Users, FileText, PieChart, LogOut, Search, Bell, CheckCircle, Clock, AlertCircle } });
+  createIcons({ icons: { Layout, Users, FileText, PieChart, LogOut, Search, Bell, CheckCircle, Clock, AlertCircle, Briefcase } });
 
   document.querySelector('#logout-btn').addEventListener('click', () => {
     sessionStorage.removeItem('adminToken');
+    renderAdmin();
+  });
+
+  document.querySelector('#view-dashboard').addEventListener('click', () => {
+    activeTab = 'dashboard';
+    renderAdmin();
+  });
+
+  document.querySelector('#view-services').addEventListener('click', () => {
+    activeTab = 'services';
+    renderAdmin();
+  });
+}
+
+function renderServicesManager(container) {
+  container.className = 'min-h-screen flex bg-gray-50';
+  container.innerHTML = `
+    <!-- Sidebar -->
+    <aside class="w-72 bg-white border-r border-gray-200 flex flex-col fixed h-full z-10">
+      <div class="p-8 border-b border-gray-100 flex items-center space-x-3">
+        <div class="bg-primary p-2 rounded-lg">
+          <i data-lucide="layout" class="w-6 h-6 text-white"></i>
+        </div>
+        <span class="text-xl font-bold text-gray-900 tracking-tight">ELITE LOAN</span>
+      </div>
+      
+      <nav class="flex-1 p-6 space-y-2">
+        <button id="view-dashboard" class="w-full flex items-center space-x-3 px-4 py-3 ${activeTab === 'dashboard' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-gray-500 hover:bg-gray-100'} rounded-xl font-medium transition-all">
+          <i data-lucide="pie-chart" class="w-5 h-5"></i>
+          <span>Dashboard</span>
+        </button>
+        <button id="view-services" class="w-full flex items-center space-x-3 px-4 py-3 ${activeTab === 'services' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-gray-500 hover:bg-gray-100'} rounded-xl font-medium transition-all">
+          <i data-lucide="briefcase" class="w-5 h-5"></i>
+          <span>Manage Services</span>
+        </button>
+        <a href="#" class="flex items-center space-x-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl font-medium transition-all">
+          <i data-lucide="users" class="w-5 h-5"></i>
+          <span>Inquiries</span>
+        </a>
+      </nav>
+      
+      <div class="p-6 border-t border-gray-100">
+        <button id="logout-btn" class="flex items-center space-x-3 px-4 py-3 w-full text-red-500 hover:bg-red-50 rounded-xl font-medium transition-all">
+          <i data-lucide="log-out" class="w-5 h-5"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="flex-1 ml-72">
+      <header class="bg-white border-b border-gray-200 h-20 flex items-center justify-between px-10 sticky top-0 z-0">
+        <h2 class="text-xl font-bold text-gray-900">Manage Services</h2>
+        <div class="flex items-center space-x-6">
+          <div class="flex items-center space-x-3 border-l border-gray-200 pl-6">
+            <div class="text-right">
+              <p class="text-sm font-bold text-gray-900">Admin User</p>
+              <p class="text-xs text-gray-500">Super Admin</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">A</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="p-10">
+        <div class="bg-white shadow-sm border border-gray-100 rounded-3xl overflow-hidden">
+          <div class="p-8 border-b border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900">Service Fee Management</h3>
+            <p class="text-sm text-gray-500 mt-1">Updates to costs reflect instantly on the public website.</p>
+          </div>
+          <div class="p-8">
+            <div class="grid grid-cols-1 gap-6">
+              ${services.map((svc, idx) => `
+                <div class="flex items-center justify-between p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                  <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-primary shadow-sm">
+                      <i data-lucide="${svc.icon}" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-900">${svc.name}</h4>
+                      <p class="text-xs text-gray-500 italic">${svc.points.length} features listed</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-4">
+                    <div class="relative">
+                      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">₹</span>
+                      <input type="number" 
+                             class="service-cost-input w-36 pl-8 pr-4 py-2 bg-white border border-gray-200 rounded-xl outline-none focus:border-primary transition-all font-bold" 
+                             data-id="${svc.id}" 
+                             value="${svc.cost}">
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="mt-8 flex justify-end">
+              <button id="save-services-btn" class="bg-primary hover:bg-primary-dark text-white px-10 py-4 rounded-xl font-bold transition-all shadow-xl shadow-primary/20 flex items-center space-x-2">
+                <i data-lucide="check-circle" class="w-5 h-5"></i>
+                <span>Save All Changes</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  `;
+
+  createIcons({ icons: { Layout, Users, FileText, PieChart, LogOut, Search, Bell, CheckCircle, Clock, AlertCircle, Briefcase } });
+
+  document.querySelector('#logout-btn').addEventListener('click', () => {
+    sessionStorage.removeItem('adminToken');
+    renderAdmin();
+  });
+
+  document.querySelector('#view-dashboard').addEventListener('click', () => { activeTab = 'dashboard'; renderAdmin(); });
+  document.querySelector('#view-services').addEventListener('click', () => { activeTab = 'services'; renderAdmin(); });
+
+  document.querySelector('#save-services-btn').addEventListener('click', () => {
+    const inputs = document.querySelectorAll('.service-cost-input');
+    inputs.forEach(input => {
+      const id = input.getAttribute('data-id');
+      const cost = parseInt(input.value) || 0;
+      const svcIdx = services.findIndex(s => s.id === id);
+      if (svcIdx !== -1) {
+        services[svcIdx].cost = cost;
+      }
+    });
+
+    localStorage.setItem('services', JSON.stringify(services));
+    alert('Services updated successfully!');
     renderAdmin();
   });
 }
