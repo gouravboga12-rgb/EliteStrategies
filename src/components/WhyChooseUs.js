@@ -28,8 +28,8 @@ export function renderWhyChooseUs() {
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             ${reasons.map((reason, index) => `
               <div class="flex items-start space-x-4" data-aos="fade-up" data-aos-delay="${index * 100}">
-                <div class="bg-primary-light bg-opacity-20 p-2 rounded-lg">
-                  <i data-lucide="check-circle" class="w-6 h-6 text-primary-light"></i>
+                <div class="bg-white/20 p-2 rounded-lg">
+                  <i data-lucide="check-circle" class="w-6 h-6 text-white"></i>
                 </div>
                 <div>
                   <h4 class="text-white font-bold text-lg mb-1">${reason.title}</h4>
@@ -41,9 +41,9 @@ export function renderWhyChooseUs() {
         </div>
 
         <div class="relative" data-aos="zoom-in">
-           <div class="glass bg-white bg-opacity-10 border-white border-opacity-20 p-12 rounded-3xl text-center shadow-2xl">
-              <h4 class="text-2xl font-bold text-white mb-4">Ready to Grow?</h4>
-              <p class="text-secondary opacity-90 mb-8 italic">"Your financial stability is our primary goal. Let's build a secure future together."</p>
+           <div class="glass p-12 rounded-3xl text-center shadow-2xl">
+              <h4 class="text-2xl font-bold text-gray-900 mb-4">Ready to Grow?</h4>
+              <p class="text-gray-600 mb-8 italic">"Your financial stability is our primary goal. Let's build a secure future together."</p>
               <a href="https://wa.me/918660627567?text=Hello,%20I%20am%20interested%20in%20your%20financial%20services." target="_blank" class="inline-flex items-center space-x-3 bg-white text-primary px-8 py-4 rounded-xl font-bold hover:bg-ash-light transition-smooth shadow-xl">
                  <i data-lucide="message-square" class="w-6 h-6"></i>
                  <span>Connect via WhatsApp</span>
