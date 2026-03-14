@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #BF9B30;
-  --color-primary-light: #E6C153;
-  --color-primary-dark: #8C6D1F;
-  --color-ash: #262626;
-  --color-ash-light: #F5F5F5;
-  --color-secondary: #FFFFFF;
-  --color-accent: #BF9B30;
+  --color-primary: #D4AF37;
+  --color-primary-light: #EAC765;
+  --color-primary-dark: #9A7D0A;
+  --color-secondary: #F8F9FA;
+  --color-accent: #C5A022;
+  --color-ash: #374151;
+  --color-ash-light: #F2F4F7;
   --font-sans: 'Inter', sans-serif;
 }
 
 :root {
-  --primary-color: #BF9B30;
-  --secondary-color: #FFFFFF;
-  --ash-color: #262626;
-  --accent-color: #BF9B30;
-  --text-color: #262626;
+  --primary-color: #D4AF37;
+  --secondary-color: #F8F9FA;
+  --accent-color: #C5A022;
+  --text-color: #374151;
+  --ash-bg: #F2F4F7;
 }
 
 body {
@@ -27,9 +27,9 @@ body {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(191, 155, 48, 0.2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .transition-smooth {

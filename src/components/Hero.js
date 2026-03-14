@@ -5,11 +5,11 @@ export function renderHero() {
   container.innerHTML = `
     <!-- Decor Background -->
     <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
-    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[600px] h-[600px] bg-ash-light rounded-full blur-[100px] opacity-30 pointer-events-none"></div>
 
     <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
       <div data-aos="fade-right">
-        <span class="inline-block py-1 px-3 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4">Empowering Your Financial Growth</span>
+        <span class="inline-block py-1 px-3 bg-primary/20 text-primary-dark text-sm font-semibold rounded-full mb-4">Empowering Your Financial Growth</span>
         <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
           Elite Loan <span class="text-primary italic">Strategies</span>
         </h1>
@@ -28,8 +28,8 @@ export function renderHero() {
         
         <div class="mt-12 flex items-center space-x-6">
           <div class="flex -space-x-3">
-            <div class="w-10 h-10 rounded-full border-2 border-white bg-primary-light/30"></div>
-            <div class="w-10 h-10 rounded-full border-2 border-white bg-primary-light/50"></div>
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-ash"></div>
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-primary"></div>
             <div class="w-10 h-10 rounded-full border-2 border-white bg-primary-light"></div>
           </div>
           <div class="text-sm text-gray-500">

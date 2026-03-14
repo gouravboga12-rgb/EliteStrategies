@@ -255,7 +255,7 @@ export function renderContact(isPreview = false) {
   container.innerHTML = `
     <div class="container mx-auto px-6 md:px-12">
       <div class="text-center mb-16">
-        <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4" data-aos="fade-up">Contact Us</h2>
+        <h2 class="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4" data-aos="fade-up">Contact Us</h2>
         <h3 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6" data-aos="fade-up" data-aos-delay="100">${formTitle}</h3>
         <p class="text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
           ${serviceId ? `Please fill out the form below to inquire about our ${formTitle.replace('Inquire for ', '')} services.` : 'Have questions about our services or need financial advice? Our team is here to help you navigate your financial journey.'}
@@ -311,7 +311,7 @@ export function renderContact(isPreview = false) {
         <div class="flex flex-col space-y-10" data-aos="fade-left">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="flex items-start space-x-4">
-              <div class="bg-primary/10 p-3 rounded-xl text-primary">
+              <div class="bg-ash-light p-3 rounded-xl text-primary">
                 <i data-lucide="phone" class="w-6 h-6"></i>
               </div>
               <div>
@@ -321,7 +321,7 @@ export function renderContact(isPreview = false) {
               </div>
             </div>
             <div class="flex items-start space-x-4">
-              <div class="bg-primary/10 p-3 rounded-xl text-primary">
+              <div class="bg-ash-light p-3 rounded-xl text-primary">
                 <i data-lucide="mail" class="w-6 h-6"></i>
               </div>
               <div>
@@ -333,7 +333,7 @@ export function renderContact(isPreview = false) {
           </div>
           
           <div class="flex items-start space-x-4">
-            <div class="bg-primary/10 p-3 rounded-xl text-primary">
+            <div class="bg-ash-light p-3 rounded-xl text-primary">
               <i data-lucide="map-pin" class="w-6 h-6"></i>
             </div>
             <div>
@@ -402,7 +402,7 @@ export function renderContact(isPreview = false) {
               <div class="space-y-3">
                 <h3 class="text-3xl font-bold text-gray-900">Payment Successful</h3>
                 <p class="text-gray-500 font-medium">Thank you! Your inquiry for <strong>${serviceName}</strong> has been received successfully.</p>
-                <div class="mt-4 p-3 bg-primary/10 rounded-xl border border-primary/20 flex flex-col items-center">
+                <div class="mt-4 p-3 bg-ash-light rounded-xl border border-gray-200 flex flex-col items-center">
                   <span class="text-xs text-primary font-bold uppercase tracking-wider mb-1">Booked Consultation Slot</span>
                   <p class="text-gray-900 font-bold">${formData.get('bookingDate')} | ${formData.get('bookingSlot')}</p>
                 </div>

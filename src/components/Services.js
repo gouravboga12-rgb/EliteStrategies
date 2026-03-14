@@ -3,7 +3,7 @@ import { createIcons, ChevronRight, ChevronDown, ChevronUp, Info, Home, Briefcas
 export function renderServices(isPreview = false) {
   const container = document.querySelector('#services');
   if (!container) return;
-  container.className = 'py-24 bg-ash-light';
+  container.className = 'py-24 bg-gray-50';
   
   let services = [
     { 
@@ -153,7 +153,7 @@ export function renderServices(isPreview = false) {
 
     ${isPreview ? `
       <div class="text-center" data-aos="fade-up">
-        <a href="/services.html" class="inline-flex items-center space-x-2 bg-white text-primary border-2 border-primary px-10 py-4 rounded-xl font-bold hover:bg-primary/10 transition-smooth shadow-lg group">
+        <a href="/services.html" class="inline-flex items-center space-x-2 bg-white text-primary border-2 border-primary px-10 py-4 rounded-xl font-bold hover:bg-primary/5 transition-smooth shadow-lg group">
           <span>View All Services</span>
           <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
         </a>

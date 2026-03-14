@@ -12,7 +12,7 @@ export function renderAbout(isPreview = false) {
                 <i data-lucide="info" class="w-32 h-32 opacity-10 absolute"></i>
                 <div class="p-12 text-center">
                    <h3 class="text-3xl font-bold mb-4">7+ Years of Excellence</h3>
-                   <p class="text-blue-100 italic">"Providing professional guidance for your financial freedom."</p>
+                   <p class="text-ash-light italic">"Providing professional guidance for your financial freedom."</p>
                 </div>
              </div>
           </div>
@@ -23,7 +23,7 @@ export function renderAbout(isPreview = false) {
         </div>
 
         <div data-aos="fade-left">
-          <h2 class="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">About Elite Loan Strategies</h2>
+          <h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">About Elite Loan Strategies</h2>
           <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 font-sans">Empowering Your Financial Future with Expert Guidance</h3>
           <p class="text-gray-600 mb-8 leading-relaxed">
             Elite Loan Strategies is a financial services company helping individuals and businesses access loans, credit reports, insurance, and financial solutions with professional guidance. We simplify the complex world of banking to ensure you get the best deals.
@@ -31,7 +31,7 @@ export function renderAbout(isPreview = false) {
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             <div class="flex items-start space-x-3">
-              <div class="mt-1 bg-blue-100 p-1 rounded-full text-primary">
+              <div class="mt-1 bg-primary/10 p-1 rounded-full text-primary">
                 <i data-lucide="check-circle" class="w-5 h-5"></i>
               </div>
               <div>
@@ -40,7 +40,7 @@ export function renderAbout(isPreview = false) {
               </div>
             </div>
             <div class="flex items-start space-x-3">
-              <div class="mt-1 bg-blue-100 p-1 rounded-full text-primary">
+              <div class="mt-1 bg-primary/10 p-1 rounded-full text-primary">
                 <i data-lucide="check-circle" class="w-5 h-5"></i>
               </div>
               <div>
@@ -51,7 +51,7 @@ export function renderAbout(isPreview = false) {
           </div>
 
           <!-- Founder Info -->
-          <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 flex items-center space-x-6 mb-8" data-aos="zoom-in" data-aos-delay="300">
+          <div class="bg-ash-light p-6 rounded-xl border border-gray-200 flex items-center space-x-6 mb-8" data-aos="zoom-in" data-aos-delay="300">
             <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-primary shadow-md shrink-0">
                <img src="/mahendra_h.jpeg" alt="Mahendra H" class="w-full h-full object-cover">
             </div>
