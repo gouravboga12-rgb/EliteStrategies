@@ -124,10 +124,13 @@ function renderDashboard(container) {
     <!-- Sidebar -->
     <aside class="w-72 bg-white border-r border-gray-200 flex flex-col fixed h-full z-10">
       <div class="p-8 border-b border-gray-100 flex items-center space-x-3">
-        <div class="bg-primary p-2 rounded-lg">
-          <i data-lucide="layout" class="w-6 h-6 text-white"></i>
+        <div class="w-10 h-10 rounded-lg overflow-hidden shrink-0">
+          <img src="/logo.png" alt="Logo" class="w-full h-full object-contain">
         </div>
-        <span class="text-xl font-bold text-gray-900 tracking-tight">ELITE LOAN</span>
+        <div>
+          <h1 class="text-lg font-black text-gray-900 leading-none tracking-tighter">ELITE LOAN</h1>
+          <p class="text-[10px] text-primary font-bold tracking-[0.1em] uppercase mt-0.5">Strategies</p>
+        </div>
       </div>
       
       <nav class="flex-1 p-6 space-y-2">
