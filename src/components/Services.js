@@ -166,8 +166,8 @@ export function renderServices(isPreview = false) {
   };
 
   // Initial fetch and build
-  console.log('Elite Loan: Initializing static view first...');
-  buildUI(STATIC_SERVICES);
+  console.log('Elite Loan: Initializing static view with priority order...');
+  buildUI(sortServices(STATIC_SERVICES));
   
   fetchServices().then(data => {
     console.log('Elite Loan: Updating UI with fresh data from database');

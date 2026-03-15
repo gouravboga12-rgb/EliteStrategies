@@ -114,7 +114,8 @@ export function renderFooter() {
   };
 
   fetchFooterServices().then(data => {
-    const sortedData = sortServices(data);
+    const servicesToDisplay = data && data.length > 0 ? data : STATIC_FOOTER;
+    const sortedData = sortServices(servicesToDisplay);
     buildFooterUI(sortedData.slice(0, 5));
   });
 }
