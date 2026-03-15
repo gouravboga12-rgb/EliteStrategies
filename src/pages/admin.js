@@ -438,17 +438,17 @@ function renderSettingsView() {
 
           <!-- Manual Fields Section -->
           <div class="space-y-4 pt-6 border-t border-gray-100">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Manual/Custom Fields</label>
                 <p class="text-[10px] text-gray-400 ml-1">Add fields not listed above (e.g., Mother's Name)</p>
               </div>
-              <button type="button" onclick="addManualFieldUI()" class="bg-primary/5 hover:bg-primary/10 text-primary px-4 py-2 rounded-xl text-xs font-bold transition-all border border-primary/10 flex items-center space-x-2">
+              <button type="button" onclick="addManualFieldUI()" class="bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-xl text-xs font-bold transition-all border border-primary/20 flex items-center space-x-2">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i>
                 <span>Add Custom Field</span>
               </button>
             </div>
-            <div id="custom-fields-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div id="custom-fields-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <!-- Custom fields dynamically added here -->
             </div>
           </div>
@@ -484,18 +484,18 @@ function renderSettingsView() {
                     </div>
                   </div>
                   
-                  <div class="flex items-center space-x-6">
+                  <div class="flex items-center space-x-3 md:space-x-6">
                     <div class="relative">
-                      <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-gray-400">₹</span>
-                      <input type="number" value="${s.price}" data-price-id="${s.id}" class="w-32 pl-8 pr-4 py-3 rounded-xl border border-gray-100 group-hover:border-gray-200 focus:border-primary outline-none text-right font-bold text-gray-900">
+                      <span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-gray-400 text-sm">₹</span>
+                      <input type="number" value="${s.price}" data-price-id="${s.id}" class="w-24 md:w-32 pl-8 pr-4 py-3 rounded-xl border border-gray-100 group-hover:border-gray-200 focus:border-primary outline-none text-right font-bold text-gray-900 text-sm md:text-base">
                     </div>
                     
                     <div class="flex items-center space-x-2">
-                      <button onclick="updateService('${s.id}')" class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-primary/20 flex items-center space-x-2">
-                        <i data-lucide="save" class="w-4 h-4"></i>
-                        <span>Save</span>
+                      <button onclick="updateService('${s.id}')" class="bg-primary hover:bg-primary-dark text-white px-4 md:px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-primary/20 flex items-center space-x-2 text-sm">
+                        <i data-lucide="save" class="w-4 h-4 text-white"></i>
+                        <span class="hidden sm:inline">Save</span>
                       </button>
-                      <button onclick="deleteService('${s.id}')" class="bg-red-50 hover:bg-red-100 text-red-500 p-3 rounded-xl transition-colors border border-red-100">
+                      <button onclick="deleteService('${s.id}')" class="bg-red-50 hover:bg-red-100 text-red-500 p-3 rounded-xl transition-colors border border-red-100 flex items-center justify-center">
                         <i data-lucide="trash-2" class="w-5 h-5"></i>
                       </button>
                     </div>
