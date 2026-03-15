@@ -4,21 +4,21 @@ export function renderFooter() {
   const container = document.querySelector('#footer-container');
   if (!container) return;
   container.className = 'bg-black text-gray-400 py-20 border-t border-white/5';
+
+  const sortServices = (data) => {
+    const priorityOrder = ['cibil', 'personal', 'debt', 'mortgage', 'business'];
+    return [...data].sort((a, b) => {
+      const indexA = priorityOrder.indexOf(a.id);
+      const indexB = priorityOrder.indexOf(b.id);
+      
+      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+      if (indexA !== -1) return -1;
+      if (indexB !== -1) return 1;
+      return 0;
+    });
+  };
   
   const fetchFooterServices = async () => {
-    const sortServices = (data) => {
-      const priorityOrder = ['cibil', 'personal', 'debt', 'mortgage', 'business'];
-      return [...data].sort((a, b) => {
-        const indexA = priorityOrder.indexOf(a.id);
-        const indexB = priorityOrder.indexOf(b.id);
-        
-        if (indexA !== -1 && indexB !== -1) return indexA - indexB;
-        if (indexA !== -1) return -1;
-        if (indexB !== -1) return 1;
-        return 0;
-      });
-    };
-
     try {
       console.log('Elite Loan: Fetching footer services...');
       const { data, error } = await supabase.from('settings').select('id, name');
