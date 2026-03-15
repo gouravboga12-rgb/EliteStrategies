@@ -6,9 +6,22 @@ export function renderFooter() {
   container.className = 'bg-black text-gray-400 py-20 border-t border-white/5';
   
   const fetchFooterServices = async () => {
+    const sortServices = (data) => {
+      const priorityOrder = ['cibil', 'personal', 'debt', 'mortgage', 'business'];
+      return [...data].sort((a, b) => {
+        const indexA = priorityOrder.indexOf(a.id);
+        const indexB = priorityOrder.indexOf(b.id);
+        
+        if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+        if (indexA !== -1) return -1;
+        if (indexB !== -1) return 1;
+        return 0;
+      });
+    };
+
     try {
       console.log('Elite Loan: Fetching footer services...');
-      const { data, error } = await supabase.from('settings').select('id, name').limit(5);
+      const { data, error } = await supabase.from('settings').select('id, name');
       if (error) {
         console.error('Elite Loan: Footer sync error:', error);
         return [];
@@ -100,5 +113,8 @@ export function renderFooter() {
     `;
   };
 
-  fetchFooterServices().then(data => buildFooterUI(data));
+  fetchFooterServices().then(data => {
+    const sortedData = sortServices(data);
+    buildFooterUI(sortedData.slice(0, 5));
+  });
 }

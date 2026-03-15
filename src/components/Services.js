@@ -18,6 +18,19 @@ export function renderServices(isPreview = false) {
   ];
 
   const fetchServices = async () => {
+    const sortServices = (data) => {
+      const priorityOrder = ['cibil', 'personal', 'debt', 'mortgage', 'business'];
+      return [...data].sort((a, b) => {
+        const indexA = priorityOrder.indexOf(a.id);
+        const indexB = priorityOrder.indexOf(b.id);
+        
+        if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+        if (indexA !== -1) return -1;
+        if (indexB !== -1) return 1;
+        return 0;
+      });
+    };
+
     try {
       console.log('Elite Loan: Fetching services from Supabase...');
       const { data, error } = await supabase
@@ -158,6 +171,7 @@ export function renderServices(isPreview = false) {
   
   fetchServices().then(data => {
     console.log('Elite Loan: Updating UI with fresh data from database');
-    buildUI(data);
+    const sortedData = sortServices(data);
+    buildUI(sortedData);
   });
 }
