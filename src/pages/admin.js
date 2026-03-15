@@ -85,17 +85,17 @@ function renderLogin(container) {
       <form id="login-form" class="space-y-6">
         <div>
           <label class="block text-sm font-bold text-gray-700 mb-2">Username</label>
-          <input type="text" id="username" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all" value="admin" required>
+          <input type="text" id="username" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all" placeholder="Enter Admin Email" required>
         </div>
         <div>
           <label class="block text-sm font-bold text-gray-700 mb-2">Password</label>
-          <input type="password" id="password" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all" value="admin1122" required>
+          <input type="password" id="password" class="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all" placeholder="Enter Password" required>
         </div>
         <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white py-4 rounded-xl font-bold transition-all transform hover:scale-[1.02] shadow-xl">
           Sign In
         </button>
       </form>
-      <p class="text-center text-xs text-gray-400">Demo Credentials: admin / admin1122</p>
+      <p class="text-center text-xs text-gray-400">Secure Admin Access Only</p>
     </div>
   `;
 
@@ -106,8 +106,8 @@ function renderLogin(container) {
     const user = document.querySelector('#username').value;
     const pass = document.querySelector('#password').value;
     
-    if (user === 'admin' && pass === 'admin1122') {
-      sessionStorage.setItem('adminToken', 'demo');
+    if (user === 'eliteloanstrategies5@gmail.com' && pass === 'Mahi@1432') {
+      sessionStorage.setItem('adminToken', 'secure-session');
       renderAdmin();
     } else {
       alert('Invalid credentials');
@@ -428,9 +428,9 @@ function renderSettingsView() {
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-3">
               ${ALL_FIELDS.map(f => `
                 <label class="flex items-center space-x-3 p-4 bg-gray-50/50 rounded-2xl cursor-pointer hover:bg-gray-100 transition-all border border-transparent has-[:checked]:border-primary/20 has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5 group/field">
-                  <input type="checkbox" name="fields" value="${f.id}" class="w-5 h-5 rounded-lg text-primary focus:ring-primary border-gray-300 transition-all" 
+                  <input type="checkbox" name="fields" value="${f.id}" class="w-4 h-4 md:w-5 md:h-5 rounded-lg text-primary focus:ring-primary border-gray-300 transition-all" 
                     ${['name', 'email', 'phone', 'message'].includes(f.id) ? 'checked' : ''}>
-                  <span class="text-[11px] font-bold text-gray-600 uppercase tracking-tight group-has-[:checked]/field:text-primary transition-colors">${f.label}</span>
+                  <span class="text-[9px] md:text-[11px] font-bold text-gray-600 uppercase tracking-tight group-has-[:checked]/field:text-primary transition-colors">${f.label}</span>
                 </label>
               `).join('')}
             </div>
@@ -490,12 +490,12 @@ function renderSettingsView() {
                       <input type="number" value="${s.price}" data-price-id="${s.id}" class="w-24 md:w-32 pl-8 pr-4 py-3 rounded-xl border border-gray-100 group-hover:border-gray-200 focus:border-primary outline-none text-right font-bold text-gray-900 text-sm md:text-base">
                     </div>
                     
-                    <div class="flex items-center space-x-2">
+                    <div class="flex items-center space-x-3">
                       <button onclick="updateService('${s.id}')" class="bg-primary hover:bg-primary-dark text-white px-4 md:px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-primary/20 flex items-center space-x-2 text-sm">
                         <i data-lucide="save" class="w-4 h-4 text-white"></i>
                         <span class="hidden sm:inline">Save</span>
                       </button>
-                      <button onclick="deleteService('${s.id}')" class="bg-red-50 hover:bg-red-100 text-red-500 p-3 rounded-xl transition-colors border border-red-100 flex items-center justify-center">
+                      <button onclick="deleteService('${s.id}')" class="bg-red-50 hover:bg-red-100 text-red-500 p-3 rounded-xl transition-all border border-red-100 flex items-center justify-center shadow-lg shadow-red-500/5">
                         <i data-lucide="trash-2" class="w-5 h-5"></i>
                       </button>
                     </div>
@@ -511,9 +511,9 @@ function renderSettingsView() {
                     ${ALL_FIELDS.map(f => {
                       const isChecked = config.some(cf => (typeof cf === 'string' ? cf === f.id : cf.id === f.id));
                       return `
-                        <label class="flex items-center space-x-2 p-2 bg-white rounded-lg cursor-pointer border ${isChecked ? 'border-primary/30 bg-primary/5' : 'border-gray-100'} hover:border-primary/20 transition-all">
-                          <input type="checkbox" data-field-for="${s.id}" value="${f.id}" class="w-3 h-3 rounded text-primary focus:ring-primary border-gray-300" ${isChecked ? 'checked' : ''}>
-                          <span class="text-[10px] font-bold ${isChecked ? 'text-primary' : 'text-gray-500'} uppercase tracking-tight">${f.label}</span>
+                        <label class="flex items-center space-x-2 p-2 bg-white rounded-lg cursor-pointer border ${isChecked ? 'border-primary/30 bg-primary/5 shadow-sm' : 'border-gray-100'} hover:border-primary/20 transition-all">
+                          <input type="checkbox" data-field-for="${s.id}" value="${f.id}" class="w-3 h-3 md:w-4 md:h-4 rounded text-primary focus:ring-primary border-gray-300" ${isChecked ? 'checked' : ''}>
+                          <span class="text-[8.5px] md:text-[10px] font-bold ${isChecked ? 'text-primary' : 'text-gray-500'} uppercase tracking-tighter leading-tight">${f.label}</span>
                         </label>
                       `;
                     }).join('')}
