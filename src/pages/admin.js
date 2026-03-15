@@ -276,49 +276,49 @@ function renderStatsAndRecent() {
   return `
     <div class="space-y-10">
       <!-- Stats -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center space-x-4">
-          <div class="p-3 bg-green-50 text-green-600 rounded-2xl">
-            <i data-lucide="check-circle" class="w-6 h-6"></i>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div class="bg-white p-4 md:p-6 rounded-2xl md:rounded-3xl shadow-sm border border-gray-100 flex items-center space-x-3 md:space-x-4">
+          <div class="p-2 md:p-3 bg-green-50 text-green-600 rounded-xl md:rounded-2xl">
+            <i data-lucide="check-circle" class="w-5 h-5 md:w-6 h-6"></i>
           </div>
           <div>
-            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Paid</p>
-            <h3 class="text-2xl font-bold mt-0.5">${paidInquiries.length}</h3>
+            <p class="text-[9px] md:text-[10px] text-gray-400 font-bold uppercase tracking-wider">Paid</p>
+            <h3 class="text-xl md:text-2xl font-bold mt-0.5">${paidInquiries.length}</h3>
           </div>
         </div>
-        <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center space-x-4">
-          <div class="p-3 bg-yellow-50 text-yellow-600 rounded-2xl">
-            <i data-lucide="clock" class="w-6 h-6"></i>
+        <div class="bg-white p-4 md:p-6 rounded-2xl md:rounded-3xl shadow-sm border border-gray-100 flex items-center space-x-3 md:space-x-4">
+          <div class="p-2 md:p-3 bg-yellow-50 text-yellow-600 rounded-xl md:rounded-2xl">
+            <i data-lucide="clock" class="w-5 h-5 md:w-6 h-6"></i>
           </div>
           <div>
-            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Pending</p>
-            <h3 class="text-2xl font-bold mt-0.5">${pendingInquiries.length}</h3>
+            <p class="text-[9px] md:text-[10px] text-gray-400 font-bold uppercase tracking-wider">Pending</p>
+            <h3 class="text-xl md:text-2xl font-bold mt-0.5">${pendingInquiries.length}</h3>
           </div>
         </div>
-        <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center space-x-4">
-          <div class="p-3 bg-primary/10 text-primary rounded-2xl">
-            <i data-lucide="pie-chart" class="w-6 h-6"></i>
+        <div class="bg-white p-4 md:p-6 rounded-2xl md:rounded-3xl shadow-sm border border-gray-100 flex items-center space-x-3 md:space-x-4">
+          <div class="p-2 md:p-3 bg-primary/10 text-primary rounded-xl md:rounded-2xl">
+            <i data-lucide="pie-chart" class="w-5 h-5 md:w-6 h-6"></i>
           </div>
           <div>
-            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Revenue</p>
-            <h3 class="text-2xl font-bold mt-0.5">₹${totalRevenue.toLocaleString()}</h3>
+            <p class="text-[9px] md:text-[10px] text-gray-400 font-bold uppercase tracking-wider">Revenue</p>
+            <h3 class="text-xl md:text-2xl font-bold mt-0.5">₹${totalRevenue.toLocaleString()}</h3>
           </div>
         </div>
-        <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center space-x-4">
-          <div class="p-3 bg-blue-50 text-blue-600 rounded-2xl">
-            <i data-lucide="users" class="w-6 h-6"></i>
+        <div class="bg-white p-4 md:p-6 rounded-2xl md:rounded-3xl shadow-sm border border-gray-100 flex items-center space-x-3 md:space-x-4">
+          <div class="p-2 md:p-3 bg-blue-50 text-blue-600 rounded-xl md:rounded-2xl">
+            <i data-lucide="users" class="w-5 h-5 md:w-6 h-6"></i>
           </div>
           <div>
-            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Total</p>
-            <h3 class="text-2xl font-bold mt-0.5">${inquiries.length}</h3>
+            <p class="text-[9px] md:text-[10px] text-gray-400 font-bold uppercase tracking-wider">Total</p>
+            <h3 class="text-xl md:text-2xl font-bold mt-0.5">${inquiries.length}</h3>
           </div>
         </div>
       </div>
 
       <!-- Recent Inquiries -->
-      <div class="bg-white shadow-sm border border-gray-100 rounded-3xl overflow-hidden">
-        <div class="p-8 border-b border-gray-100 flex items-center justify-between">
-          <h3 class="text-xl font-bold text-gray-900">Recent Service Inquiries</h3>
+      <div class="bg-white shadow-sm border border-gray-100 rounded-2xl md:rounded-3xl overflow-hidden">
+        <div class="p-6 md:p-8 border-b border-gray-100 flex items-center justify-between">
+          <h3 class="text-lg md:text-xl font-bold text-gray-900">Recent Service Inquiries</h3>
           <button onclick="currentView='inquiries'; renderAdmin();" class="text-primary font-bold text-sm hover:underline">View All</button>
         </div>
         ${renderInquiryTable(inquiries.slice(0, 5))}
@@ -358,37 +358,39 @@ function renderInquiryTable(data) {
     <div class="overflow-x-auto">
       <table class="w-full text-left">
         <thead>
-          <tr class="bg-gray-50/50 text-gray-500 text-xs font-bold uppercase tracking-wider">
-            <th class="px-8 py-4">Client Name</th>
-            <th class="px-8 py-4">Service</th>
-            <th class="px-8 py-4">Amount</th>
-            <th class="px-8 py-4">Status</th>
-            <th class="px-8 py-4 text-right">Actions</th>
+          <tr class="bg-gray-50/50 text-gray-500 text-[10px] md:text-xs font-bold uppercase tracking-wider">
+            <th class="px-4 md:px-8 py-4">Client Name</th>
+            <th class="px-4 md:px-8 py-4 hidden sm:table-cell">Service</th>
+            <th class="px-4 md:px-8 py-4">Amount</th>
+            <th class="px-4 md:px-8 py-4">Status</th>
+            <th class="px-4 md:px-8 py-4 text-right">Actions</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
           ${data.length > 0 ? data.map(inq => `
             <tr class="hover:bg-gray-50 transition-colors">
-              <td class="px-8 py-6">
-                <div class="font-bold text-gray-900">${inq.name}</div>
-                <div class="text-xs text-gray-500 font-medium mt-0.5">${inq.email} | ${inq.phone}</div>
+              <td class="px-4 md:px-8 py-4 md:py-6">
+                <div class="font-bold text-gray-900 text-sm md:text-base">${inq.name}</div>
+                <div class="text-[10px] md:text-xs text-gray-500 font-medium mt-0.5 break-all">${inq.email} | ${inq.phone}</div>
               </td>
-              <td class="px-8 py-6">
-                <span class="px-2 py-1 bg-gray-100 rounded text-xs font-bold text-gray-600 uppercase">${inq.service_name}</span>
+              <td class="px-4 md:px-8 py-4 md:py-6 hidden sm:table-cell">
+                <span class="px-2 py-1 bg-gray-100 rounded text-[10px] font-bold text-gray-600 uppercase">${inq.service_name}</span>
               </td>
-              <td class="px-8 py-6 font-bold text-gray-900">₹${inq.amount || '0'}</td>
-              <td class="px-8 py-6">
-                <span class="inline-flex items-center px-3 py-1 ${inq.payment_status === 'Paid' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} rounded-full text-xs font-bold uppercase tracking-wide">
+              <td class="px-4 md:px-8 py-4 md:py-6 font-bold text-gray-900 text-sm md:text-base">₹${inq.amount || '0'}</td>
+              <td class="px-4 md:px-8 py-4 md:py-6">
+                <span class="inline-flex items-center px-2 md:px-3 py-1 ${inq.payment_status === 'Paid' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'} rounded-full text-[9px] md:text-xs font-bold uppercase tracking-wide">
                   ${inq.payment_status || 'Pending'}
                 </span>
-                <div class="text-[10px] text-gray-400 mt-1">${new Date(inq.created_at).toLocaleDateString()}</div>
+                <div class="text-[9px] md:text-[10px] text-gray-400 mt-1">${new Date(inq.created_at).toLocaleDateString()}</div>
               </td>
-              <td class="px-8 py-6 text-right flex items-center justify-end space-x-3">
-                <button onclick="viewDetails('${inq.id}')" class="text-primary hover:text-primary-dark font-bold text-sm bg-primary/10 px-4 py-2 rounded-lg transition-colors">Details</button>
-                <button onclick="window.deleteInquiry('${inq.id}')" class="text-red-600 hover:text-red-700 font-bold text-sm bg-red-50 px-4 py-2 rounded-lg transition-colors inline-flex items-center space-x-2" title="Delete Inquiry">
-                  <i data-lucide="trash-2" class="w-4 h-4"></i>
-                  <span>Delete</span>
-                </button>
+              <td class="px-4 md:px-8 py-4 md:py-6 text-right">
+                <div class="flex items-center justify-end space-x-2 md:space-x-3">
+                  <button onclick="viewDetails('${inq.id}')" class="text-primary hover:text-primary-dark font-bold text-[10px] md:text-sm bg-primary/10 px-3 md:px-4 py-1.5 md:py-2 rounded-lg transition-colors">Details</button>
+                  <button onclick="window.deleteInquiry('${inq.id}')" class="text-red-600 hover:text-red-700 p-2 md:px-4 md:py-2 rounded-lg bg-red-50 transition-colors inline-flex items-center" title="Delete Inquiry">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    <span class="hidden md:inline ml-2 text-sm font-bold">Delete</span>
+                  </button>
+                </div>
               </td>
             </tr>
           `).join('') : `
@@ -657,18 +659,18 @@ function renderDetailsModal() {
   ].filter(f => f.value !== null && f.value !== undefined && f.value !== '');
 
   return `
-    <div class="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/60 backdrop-blur-sm p-6 overflow-y-auto">
-      <div class="bg-white rounded-[2.5rem] w-full max-w-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-        <div class="bg-gray-50 px-10 py-8 border-b border-gray-100 flex items-center justify-between">
+    <div class="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-gray-900/60 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto">
+      <div class="bg-white rounded-t-3xl sm:rounded-[2.5rem] w-full max-w-3xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 sm:zoom-in duration-300 max-h-[90vh] flex flex-col">
+        <div class="bg-gray-50 px-6 sm:px-10 py-6 sm:py-8 border-b border-gray-100 flex items-center justify-between shrink-0">
           <div>
-            <h3 class="text-2xl font-bold text-gray-900">Inquiry Details</h3>
-            <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest font-bold">ID: ${selectedInquiry.id}</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Inquiry Details</h3>
+            <p class="text-[10px] text-gray-500 mt-1 uppercase tracking-widest font-bold">ID: ${selectedInquiry.id}</p>
           </div>
           <button id="close-modal" class="p-2 hover:bg-white rounded-xl transition-colors text-gray-400 hover:text-gray-600">
-            <i data-lucide="log-out" class="w-6 h-6 rotate-180"></i>
+            <i data-lucide="x" class="w-6 h-6"></i>
           </button>
         </div>
-        <div class="p-10 overflow-y-auto max-h-[70vh]">
+        <div class="p-6 sm:p-10 overflow-y-auto">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
             ${fields.map(f => `
               <div class="${f.full ? 'md:col-span-2' : ''} space-y-1">
@@ -680,14 +682,14 @@ function renderDetailsModal() {
             `).join('')}
           </div>
         </div>
-        <div class="px-10 py-6 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
+        <div class="px-6 sm:px-10 py-6 bg-gray-50 border-t border-gray-100 flex justify-between items-center shrink-0">
           ${(!selectedInquiry.payment_status || selectedInquiry.payment_status === 'Pending') ? `
-            <button onclick="markAsPaid('${selectedInquiry.id}')" class="text-green-600 hover:text-green-700 font-bold flex items-center space-x-2 bg-green-50 px-6 py-3 rounded-xl border border-green-100 transition-colors">
-              <i data-lucide="check-circle" class="w-5 h-5"></i>
+            <button onclick="markAsPaid('${selectedInquiry.id}')" class="text-green-600 hover:text-green-700 font-bold flex items-center space-x-2 bg-green-50 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-green-100 transition-colors text-sm sm:text-base">
+              <i data-lucide="check-circle" class="w-4 h-4 sm:w-5 h-5"></i>
               <span>Mark as Paid</span>
             </button>
           ` : '<div></div>'}
-          <button id="close-modal-btn" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-primary/20">Close View</button>
+          <button id="close-modal-btn" class="bg-primary hover:bg-primary-dark text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-bold transition-all shadow-lg shadow-primary/20 text-sm sm:text-base">Close</button>
         </div>
       </div>
     </div>
