@@ -10,6 +10,7 @@ let settings = [];
 let isLoading = false;
 let selectedInquiry = null;
 let customFieldsTemp = []; // Temporary list for new service creation
+let isSidebarOpen = false; // Mobile sidebar toggle state
 
 const ALL_FIELDS = [
   { id: 'name', label: 'FullName' },
@@ -121,16 +122,24 @@ function renderDashboard(container) {
   const inactiveClass = "text-gray-500 hover:bg-gray-100";
 
   container.innerHTML = `
+    <!-- Sidebar Backdrop (Mobile) -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-gray-900/50 z-40 lg:hidden transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}"></div>
+
     <!-- Sidebar -->
-    <aside class="w-72 bg-white border-r border-gray-200 flex flex-col fixed h-full z-10">
-      <div class="p-8 border-b border-gray-100 flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-lg overflow-hidden shrink-0">
-          <img src="/logo.png" alt="Logo" class="w-full h-full object-contain">
+    <aside id="admin-sidebar" class="w-72 bg-white border-r border-gray-200 flex flex-col fixed inset-y-0 left-0 z-50 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 ease-in-out h-full">
+      <div class="p-8 border-b border-gray-100 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-lg overflow-hidden shrink-0">
+            <img src="/logo.png" alt="Logo" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <h1 class="text-lg font-black text-gray-900 leading-none tracking-tighter">ELITE LOAN</h1>
+            <p class="text-[10px] text-primary font-bold tracking-[0.1em] uppercase mt-0.5">Strategies</p>
+          </div>
         </div>
-        <div>
-          <h1 class="text-lg font-black text-gray-900 leading-none tracking-tighter">ELITE LOAN</h1>
-          <p class="text-[10px] text-primary font-bold tracking-[0.1em] uppercase mt-0.5">Strategies</p>
-        </div>
+        <button id="close-sidebar" class="lg:hidden p-2 text-gray-400 hover:text-primary">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
       </div>
       
       <nav class="flex-1 p-6 space-y-2">
@@ -157,31 +166,32 @@ function renderDashboard(container) {
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 ml-72">
+    <main class="flex-1 lg:ml-72 min-w-0">
       <!-- Navbar -->
-      <header class="bg-white border-b border-gray-200 h-20 flex items-center justify-between px-10 sticky top-0 z-0">
+      <header class="bg-white border-b border-gray-200 h-20 flex items-center justify-between px-6 md:px-10 sticky top-0 z-30">
         <div class="flex items-center space-x-4">
-          <h2 class="text-xl font-bold text-gray-900 capitalize">${currentView}</h2>
-          ${isLoading ? '<i data-lucide="refresh-cw" class="w-5 h-5 text-primary animate-spin"></i>' : ''}
+          <button id="menu-toggle" class="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+          <h2 class="text-lg md:text-xl font-bold text-gray-900 capitalize">${currentView}</h2>
+          ${isLoading ? '<i data-lucide="refresh-cw" class="w-4 h-4 md:w-5 h-5 text-primary animate-spin"></i>' : ''}
         </div>
         
-        <div class="flex items-center space-x-6">
-          <div class="flex items-center space-x-3">
-             <button id="refresh-btn" class="p-2 text-gray-400 hover:text-primary transition-colors">
-              <i data-lucide="refresh-cw" class="w-5 h-5"></i>
-            </button>
-          </div>
-          <div class="flex items-center space-x-3 border-l border-gray-200 pl-6">
-            <div class="text-right">
-              <p class="text-sm font-bold text-gray-900">Admin User</p>
-              <p class="text-xs text-gray-500">Super Admin</p>
+        <div class="flex items-center space-x-4 md:space-x-6">
+          <button id="refresh-btn" class="p-2 text-gray-400 hover:text-primary transition-colors hidden md:block">
+            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+          </button>
+          <div class="flex items-center space-x-3 border-l border-gray-200 pl-4 md:pl-6">
+            <div class="text-right hidden sm:block">
+              <p class="text-sm font-bold text-gray-900">Admin</p>
+              <p class="text-[10px] text-gray-500">Super Admin</p>
             </div>
-            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">A</div>
+            <div class="w-8 h-8 md:w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm">A</div>
           </div>
         </div>
       </header>
 
-      <div class="p-10">
+      <div class="p-4 md:p-10">
         ${renderContent()}
       </div>
     </main>
@@ -190,12 +200,40 @@ function renderDashboard(container) {
     ${selectedInquiry ? renderDetailsModal() : ''}
   `;
 
-  createIcons({ icons: { Layout, Users, FileText, PieChart, LogOut, Search, Bell, CheckCircle, Clock, AlertCircle, Settings, Save, RefreshCw, PlusCircle, Trash2, CheckSquare } });
+  createIcons({ icons: { Layout, Users, FileText, PieChart, LogOut, Search, Bell, CheckCircle, Clock, AlertCircle, Settings, Save, RefreshCw, PlusCircle, Trash2, CheckSquare, Menu, X } });
+
+  // Sidebar Toggle Logic
+  document.querySelector('#menu-toggle')?.addEventListener('click', () => {
+    isSidebarOpen = true;
+    renderAdmin();
+  });
+
+  document.querySelector('#close-sidebar')?.addEventListener('click', () => {
+    isSidebarOpen = false;
+    renderAdmin();
+  });
+
+  document.querySelector('#sidebar-backdrop')?.addEventListener('click', () => {
+    isSidebarOpen = false;
+    renderAdmin();
+  });
 
   // Navigation Event Listeners
-  document.querySelector('#view-dashboard').addEventListener('click', () => { currentView = 'dashboard'; renderAdmin(); });
-  document.querySelector('#view-inquiries').addEventListener('click', () => { currentView = 'inquiries'; renderAdmin(); });
-  document.querySelector('#view-settings').addEventListener('click', () => { currentView = 'settings'; renderAdmin(); });
+  document.querySelector('#view-dashboard').addEventListener('click', () => { 
+    currentView = 'dashboard'; 
+    isSidebarOpen = false;
+    renderAdmin(); 
+  });
+  document.querySelector('#view-inquiries').addEventListener('click', () => { 
+    currentView = 'inquiries'; 
+    isSidebarOpen = false;
+    renderAdmin(); 
+  });
+  document.querySelector('#view-settings').addEventListener('click', () => { 
+    currentView = 'settings'; 
+    isSidebarOpen = false;
+    renderAdmin(); 
+  });
   document.querySelector('#refresh-btn').addEventListener('click', fetchData);
   
   const addForm = document.querySelector('#add-service-form');
