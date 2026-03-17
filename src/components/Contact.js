@@ -61,7 +61,7 @@ export function renderContact(isPreview = false) {
   };
 
   const initForm = async () => {
-    let currentService = { name: 'Financial Service', price: 199, form_config: ['name', 'email', 'phone', 'message'] };
+    let currentService = { name: serviceId ? 'Financial Service' : 'Contact Form', price: serviceId ? 199 : 0, form_config: ['name', 'email', 'phone', 'message'] };
     
     try {
       const { data, error } = await supabase.from('settings').select('*').eq('id', serviceId || 'default').single();
@@ -109,10 +109,11 @@ export function renderContact(isPreview = false) {
             <form id="contact-form" class="space-y-6">
               ${generatedFormContent}
               
+              ${serviceId ? `
               <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 space-y-3">
                 <div class="flex justify-between items-center text-sm text-gray-500">
                   <span>Professional Fee</span>
-                  <span>₹${amountInRupees}</span>
+                  <span>\u20b9${amountInRupees}</span>
                 </div>
                 <div class="flex justify-between items-center text-sm text-gray-500">
                   <span>Processing Fee</span>
@@ -120,13 +121,12 @@ export function renderContact(isPreview = false) {
                 </div>
                 <div class="pt-3 border-t border-gray-200 flex justify-between items-center">
                   <span class="font-bold text-gray-900">Total Amount</span>
-                  <span class="text-xl font-bold text-primary">₹${amountInRupees}</span>
+                  <span class="text-xl font-bold text-primary">\u20b9${amountInRupees}</span>
                 </div>
-              </div>
+              </div>` : ''}
 
               <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white py-4 rounded-xl font-bold transition-all transform hover:scale-[1.01] active:scale-[0.99] shadow-lg flex items-center justify-center space-x-2 group">
-                <span>Secure Payment & Send Inquiry</span>
-                <i data-lucide="shield-check" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                ${serviceId ? `<span>Secure Payment &amp; Send Inquiry</span><i data-lucide="shield-check" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>` : `<span>Send Inquiry</span><i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>`}
               </button>
             </form>
           </div>
@@ -162,7 +162,7 @@ export function renderContact(isPreview = false) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const formData = new FormData(form);
-      const keyId = "rzp_test_EliteLoan"; 
+      const keyId = import.meta.env.VITE_RAZORPAY_KEY_ID; 
       
       const saveInquiry = async (paymentId = "DEMO") => {
         const btn = form.querySelector('button[type="submit"]');
@@ -171,10 +171,10 @@ export function renderContact(isPreview = false) {
             name: formData.get('name') || 'Anonymous',
             email: formData.get('email') || 'N/A',
             phone: formData.get('phone') || 'N/A',
-            service_name: serviceName,
-            amount: amountInRupees,
+            service_name: serviceId ? serviceName : 'Contact Form',
+            amount: serviceId ? amountInRupees : 0,
             payment_id: paymentId,
-            payment_status: 'Paid',
+            payment_status: serviceId ? 'Paid' : 'N/A',
             booking_date: formData.get('booking_date'),
             booking_slot: formData.get('booking_slot'),
             dob: formData.get('dob'),
@@ -199,8 +199,13 @@ export function renderContact(isPreview = false) {
         } finally {
           if (btn) {
             btn.disabled = false;
-            btn.innerHTML = '<span>Secure Payment & Send Inquiry</span><i data-lucide="shield-check" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>';
-            createIcons({ icons: { ShieldCheck } });
+            if (serviceId) {
+              btn.innerHTML = '<span>Secure Payment & Send Inquiry</span><i data-lucide="shield-check" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>';
+              createIcons({ icons: { ShieldCheck } });
+            } else {
+              btn.innerHTML = '<span>Send Inquiry</span><i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>';
+              createIcons({ icons: { ArrowRight } });
+            }
           }
         }
       };
@@ -214,18 +219,27 @@ export function renderContact(isPreview = false) {
         modal.querySelector('#close-success').addEventListener('click', () => { window.location.href = '/'; });
       };
 
-      if (keyId === "rzp_test_EliteLoan") {
+      // Contact page (no serviceId): skip all payment logic, submit directly
+      if (!serviceId) {
         const btn = form.querySelector('button[type="submit"]');
         btn.disabled = true;
-        btn.innerHTML = '<i data-lucide="refresh-cw" class="w-5 h-5 animate-spin mr-2"></i>Processing...';
+        btn.innerHTML = '<i data-lucide="refresh-cw" class="w-5 h-5 animate-spin mr-2"></i>Sending...';
         createIcons({ icons: { RefreshCw } });
-        setTimeout(async () => { await saveInquiry(); }, 1500);
+        await saveInquiry('FREE');
         return;
       }
 
+      // Service pages: use real Razorpay payment flow with the new test key
       const options = {
         "key": keyId, "amount": amountInRupees * 100, "currency": "INR", "name": "Elite Loan Strategies",
-        "handler": async (res) => { await saveInquiry(res.razorpay_payment_id); }
+        "description": `Inquiry for ${serviceName}`,
+        "handler": async (res) => { await saveInquiry(res.razorpay_payment_id); },
+        "prefill": {
+          "name": formData.get('name'),
+          "email": formData.get('email'),
+          "contact": formData.get('phone')
+        },
+        "theme": { "color": "#B4943E" }
       };
       new window.Razorpay(options).open();
     });
@@ -243,10 +257,39 @@ export function renderContact(isPreview = false) {
 
         const availability = await getSlotAvailability(val);
         
+        // Dynamic Slot Filtering based on current time for Today
+        const todayStr = new Date().toLocaleDateString('en-CA'); // 'YYYY-MM-DD' in local time
+        const isToday = val === todayStr;
+        const now = new Date();
+        
+        let availableSlots = TIMESLOTS;
+        
+        if (isToday) {
+          availableSlots = TIMESLOTS.filter(slot => {
+            const [startTime] = slot.split(' - ');
+            let [time, modifier] = startTime.split(' ');
+            let [hours, minutes] = time.split(':').map(Number);
+            
+            if (modifier === 'PM' && hours !== 12) hours += 12;
+            if (modifier === 'AM' && hours === 12) hours = 0;
+            
+            const slotStart = new Date();
+            slotStart.setHours(hours, minutes, 0, 0);
+            
+            return slotStart > now;
+          });
+        }
+
         slotSelect.disabled = false;
+        
+        if (availableSlots.length === 0) {
+          slotSelect.innerHTML = `<option value="" disabled selected>No slots available for ${isToday ? 'Today' : 'this date'}</option>`;
+          return;
+        }
+
         slotSelect.innerHTML = '<option value="" disabled selected>Select a Time Slot</option>';
         
-        TIMESLOTS.forEach(timeRange => {
+        availableSlots.forEach(timeRange => {
           // Generate two slots for each time range
           [1, 2].forEach(slotNum => {
             const slotName = `${timeRange} (Slot ${slotNum})`;
