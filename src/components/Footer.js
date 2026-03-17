@@ -34,11 +34,11 @@ export function renderFooter() {
   };
 
   const STATIC_FOOTER = [
-    { id: 'cibil', name: 'CIBIL Report' },
-    { id: 'personal', name: 'Personal Loan' },
-    { id: 'debt', name: 'Debt Consolidation' },
-    { id: 'mortgage', name: 'Mortgage Loan' },
-    { id: 'business', name: 'Business Loan' }
+    { id: 'cibil', name: 'CIBIL Report', data: 'Official credit score analysis & fix' },
+    { id: 'personal', name: 'Personal Loan', data: 'Quick funding with minimal documentation' },
+    { id: 'debt', name: 'Debt Consolidation', data: 'Simplified single monthly payment' },
+    { id: 'mortgage', name: 'Mortgage Loan', data: 'High capital against property' },
+    { id: 'business', name: 'Business Loan', data: 'SME growth & working capital' }
   ];
 
   const buildFooterUI = (servicesData) => {
@@ -70,6 +70,8 @@ export function renderFooter() {
             <li><a href="/about.html" class="hover:text-primary transition-colors">About Us</a></li>
             <li><a href="/services.html" class="hover:text-primary transition-colors">Our Services</a></li>
             <li><a href="/contact.html" class="hover:text-primary transition-colors">Contact Us</a></li>
+            <li><a href="/terms.html" class="hover:text-primary transition-colors">Terms & Conditions</a></li>
+            <li><a href="/privacy.html" class="hover:text-primary transition-colors">Privacy Policy</a></li>
           </ul>
         </div>
 
@@ -78,7 +80,12 @@ export function renderFooter() {
           <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Our Services</h4>
           <ul class="space-y-4 text-sm">
             ${services.length > 0 ? services.map(s => `
-              <li><a href="/services.html" class="hover:text-primary transition-colors">${s.name}</a></li>
+              <li class="group">
+                <a href="/services.html" class="block">
+                  <span class="hover:text-primary transition-colors block font-medium">${s.name}</span>
+                  <span class="text-[10px] text-gray-500 block invisible h-0 group-hover:visible group-hover:h-auto transition-all">${s.data || 'Expert Solution'}</span>
+                </a>
+              </li>
             `).join('') : `
               <li><a href="/services.html" class="hover:text-primary transition-colors">Personal Loan</a></li>
               <li><a href="/services.html" class="hover:text-primary transition-colors">Business Loan</a></li>
@@ -109,6 +116,12 @@ export function renderFooter() {
       
       <div class="container mx-auto px-6 md:px-12 mt-16 pt-8 border-t border-white/10 text-center text-xs text-gray-600">
         <p>&copy; ${new Date().getFullYear()} Elite Loan Strategies. All Rights Reserved.</p>
+        <p class="mt-2 group">
+          Developed by 
+          <a href="https://www.codtechitsolutions.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white transition-colors font-semibold">
+            CODTECH IT SOLUTION
+          </a>
+        </p>
       </div>
     `;
   };
