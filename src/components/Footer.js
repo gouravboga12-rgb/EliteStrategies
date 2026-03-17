@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase.js';
+import { createIcons, Phone, Mail, MapPin } from 'lucide';
 
 export function renderFooter() {
   const container = document.querySelector('#footer-container');
@@ -124,6 +125,8 @@ export function renderFooter() {
         </p>
       </div>
     `;
+
+    createIcons({ icons: { Phone, Mail, MapPin } });
   };
 
   fetchFooterServices().then(data => {
