@@ -108,7 +108,7 @@ export function renderFooter() {
               <span class="text-xs">eliteloanstrategies5@gmail.com</span>
             </li>
             <li class="flex items-start space-x-3">
-              <i data-lucide="map-pin" class="w-5 h-5 text-primary mt-1"></i>
+              <i data-lucide="map-pin" class="w-6 h-6 text-primary mt-1 shrink-0"></i>
               <span>No. 710, 1st Main Road, 4th Cross, near Govt School, Mathikere, Bangalore, 560054</span>
             </li>
           </ul>
