@@ -51,8 +51,13 @@ function init() {
                 <p>Elite Loan Strategies shall not be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use our services or for the actions of third-party financial institutions.</p>
               </section>
 
+              <section>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">6. Refund Policy</h2>
+                <p>If a customer is not satisfied with our service or work, they may request a refund. Once the request is approved, the refund will be processed within 5 working days to the original payment method.</p>
+              </section>
+
               <section class="pt-8 border-t border-gray-100 italic text-sm text-gray-500">
-                Last updated: March 17, 2026
+                Last updated: March 18, 2026
               </section>
             </div>
           </div>
